@@ -1,0 +1,20 @@
+{
+  "name": "smarthome",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Rakshith Koravadi Hatwar <rakshithk@live.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ksuperman/AR-Smart-Home-Controller",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
