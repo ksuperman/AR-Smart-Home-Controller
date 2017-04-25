@@ -1,0 +1,7 @@
+.device_display_box{
+    border:2px solid #ff4d4d;
+    padding: 12.5px;
+    margin: auto;
+    margin-top: 5px;
+    border-radius: 5px;
+}
