@@ -7,8 +7,18 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./api/deviceapi');
 
 var app = express();
+
+var mongoose = require('mongoose');
+var mongourl = 'mongodb://teamawsome:FinallyAwsome1#@ds115701.mlab.com:15701/teamawsome'
+mongoose.Promise = global.Promise;
+
+mongoose.connect(mongourl, function(err) {
+    if (err) throw err;
+    console.log("Successfully Connected to cloud mongodb");
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,6 +41,7 @@ app.use('/bower_components' ,express.static(path.join(__dirname, 'bower_componen
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/api/device', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
