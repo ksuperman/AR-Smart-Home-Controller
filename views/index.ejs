@@ -14,10 +14,13 @@
     <!-- Stylesheet Custom -->
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/devdisplay.css' />
+      <link rel='stylesheet' href='/stylesheets/dashboard.css' />
 
     <!-- Script Library -->
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/materialize/dist/js/materialize.js"></script>
+      <script src="/bower_components/highcharts/highstock.js"></script>
+      <script src="/bower_components/highcharts/modules/exporting.js"></script>
   </head>
   <body>
   <div id="header" class="header"></div>
@@ -41,6 +44,7 @@
 
   <!-- Initialize Scripts -->
   <script src="/javascripts/initialize.js"></script>
+  <script src="/javascripts/dashboard.js"></script>
   <script type="text/javascript">
       $(document).ready(function(){
           var dev_db = {
