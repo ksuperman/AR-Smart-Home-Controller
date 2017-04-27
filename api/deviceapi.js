@@ -5,10 +5,9 @@ var device = require('../schema/deviceModel');
 /**
  * API SERVICE TO INSERT DEVICE
  */
-router.post('/insertDevice', function(req, res, next) {
+router.get('/insertDevice', function(req, res, next) {
 	console.log("/insertDevice");
-	
-	var name = "Washing Machine";
+	var name = "Bulb2";
 	var energy = Math.ceil(Math.random()*1000);
 	
 	var deviceInstance = new device({
@@ -57,6 +56,19 @@ router.get('/getDevice', function(req, res, next) {
 		}
 		res.send(document);
 	});
+});
+
+/*This API is used to populate unique devices in device management tab*/
+router.get('/getUniqueDevices', function(req, res, next) {
+    console.log("/getUniqueDevices");
+    device.aggregate({$group:{_id:{name:"$device_name",dev_id:"$device_id"},total:{$sum:"$device_energy_consumption"},lastused:{$max:"$device_util_endTime"}}}, function (err, document){
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        //console.log("In Device API.js:"+document);
+        res.send(document);
+    });
 });
 
 module.exports = router;

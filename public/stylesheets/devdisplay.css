@@ -5,3 +5,9 @@
     margin-top: 5px;
     border-radius: 5px;
 }
+.pagination > li{
+    display: inline;
+    width: auto;
+    height: 35px;
+    padding: 5px 15px;
+}
