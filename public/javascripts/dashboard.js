@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	/**
-	 * Highchart for displaying devices used
+	 * Populate Cards in Device Management Tab
 	 */
 
 	$.getJSON('/api/device/getAllDevices', function (data) {

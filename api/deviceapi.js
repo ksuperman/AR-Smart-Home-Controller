@@ -7,10 +7,9 @@ var moment = require('moment');
 /**
  * API SERVICE TO INSERT DEVICE
  */
-router.post('/insertDevice', function(req, res, next) {
+router.get('/insertDevice', function(req, res, next) {
 	console.log("/insertDevice");
-	
-	var name = "Washing Machine";
+	var name = "Bulb2";
 	var energy = Math.ceil(Math.random()*1000);
 	
 	var deviceInstance = new device({
@@ -109,7 +108,5 @@ router.get('/getAllDevicesEnergy', function(req, res, next) {
 		res.send(document);
 	});
 });
-
-
 
 module.exports = router;
