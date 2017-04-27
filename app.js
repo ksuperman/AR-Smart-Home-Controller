@@ -6,9 +6,20 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
+var heatmap = require('./routes/heatmap');
 var users = require('./routes/users');
-
+var api = require('./api/deviceapi');
+var energyApi = require('./api/energyconsumption');
 var app = express();
+
+var mongoose = require('mongoose');
+var mongourl = 'mongodb://teamawsome:FinallyAwsome1#@ds115701.mlab.com:15701/teamawsome'
+mongoose.Promise = global.Promise;
+
+mongoose.connect(mongourl, function(err) {
+    if (err) throw err;
+    console.log("Successfully Connected to cloud mongodb");
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,17 +40,18 @@ app.use(require('node-sass-middleware')({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components' ,express.static(path.join(__dirname, 'bower_components')));
 
-app.use('/', index);
+app.use('/', heatmap);
 app.use('/users', users);
+app.use('/energy', heatmap);
+app.use('/api/device', api);
+app.use('/api/energy', energyApi);
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
