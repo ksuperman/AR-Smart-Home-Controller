@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var device = require('../schema/deviceModel');
+var energyConsumed = require('../schema/energyModel');
+var moment = require('moment');
 
 /**
  * API SERVICE TO INSERT DEVICE
@@ -51,6 +53,57 @@ router.get('/getAllDevices', function(req, res, next) {
 router.get('/getDevice', function(req, res, next) {
 	console.log("/getDevice");	
 	device.findOne({ device_name: "Fan4"}, function (err, document){
+		if(err){
+			console.log(err);
+			throw err;
+		}
+		res.send(document);
+	});
+});
+
+/**
+ * API TO INSERT ENERGY CONSUMPTION PER DAY
+ */
+router.get('/insertDevicesEnergy', function(req, res, next) {
+	console.log("/insertDevicesEnergy");
+	
+	var data = [];
+	for(var i = 90; i >=7; i--){
+		var date = moment(moment().subtract(i, 'days').calendar(), "MM/DD/YYYY HH:mm").unix()*1000;
+		var energy = Math.ceil(Math.random()*1000);
+		data.push({"energy_date" : date,"energy_consumed" : energy});
+	}
+	
+	/*
+	var energyConsumedInstance = new energyConsumed({
+		energy_date: ...........,
+		energy_consumed: energy
+	});
+	
+	energyConsumedInstance.save(function (err) {
+		if (err) {
+			res.send("error");
+		} else {
+			res.send("success");
+		}
+	});*/
+	
+	energyConsumed.insertMany(data, function(err, docs){
+		if (err) {
+			console.log(err);
+			res.send("error");
+		} else {
+			res.send("success");
+		}
+	});
+});
+
+/**
+ * API TO GET ENERGY CONSUMPTION PER DAY
+ */
+router.get('/getAllDevicesEnergy', function(req, res, next) {
+	console.log("/getAllDevicesEnergy");	
+	energyConsumed.find({}, function (err, document){
 		if(err){
 			console.log(err);
 			throw err;

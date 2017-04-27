@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Smart Home Controller</title>
-	<link href="http://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+<title>DATA TABLE</title>
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel='stylesheet' href='/bower_components/materialize/dist/css/materialize.css' />
 	<link rel='stylesheet' href='/stylesheets/style.css' />
@@ -11,6 +11,8 @@
 	<script src="/bower_components/materialize/dist/js/materialize.js"></script>
 	<script src="/bower_components/highcharts/highstock.js"></script>
 	<script src="/bower_components/highcharts/modules/exporting.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
 	<script src="/bower_components/moment/moment.js"></script>
 </head>
 <body>
@@ -18,21 +20,11 @@
 	<div id="sidenav" class="sidenav"></div>
 	<div class="main">
 		<div class="container">
-			<div class="row">
-				<div class="col s6">
-					<div id="highchart1"></div>
-				</div>
-				<div class="col s6">
-					<div id="highchart2"></div>
-				</div>
-				<div class="col s12">
-					<div id="highchart3"></div>
-				</div>
-			</div>
+			<table id="example" class="display"></table>
 		</div>
 	</div>
 	<div id="footer" class="footer"></div>
 	<script src="/javascripts/initialize.js"></script>
-	<script src="/javascripts/dashboard.js"></script>
+	<script src="/javascripts/datatable.js"></script>
 </body>
 </html>

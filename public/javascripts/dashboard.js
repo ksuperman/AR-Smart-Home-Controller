@@ -13,19 +13,26 @@ $(document).ready(function(){
 	.fail(function(xhr, status, error) {
 		console.log(error);
 	});
-
+	
 	/**
 	 * Highchart for displaying devices used
 	 */
 
 	$.getJSON('/api/device/getAllDevices', function (data) {
-		
+
 		var series = [];
-		
+
 		for (var i=0 ; i< data.length; i++) {
-		    series.push({"name" : data[i].device_name, "y" : data[i].device_energy_consumption})
+			var x =new Date(data[i].device_util_startTime);
+			var y =new Date(data[i].device_util_endTime);
+			if(i==0){
+				series.push({"name" : data[i].device_name, "y" : data[i].device_energy_consumption,
+					sliced: true, selected: true});
+			}else{
+				series.push({"name" : data[i].device_name, "y" : data[i].device_energy_consumption});
+			}
 		}
-		
+
 		Highcharts.chart('highchart1', {
 			chart: {
 				plotBackgroundColor: null,
@@ -57,7 +64,6 @@ $(document).ready(function(){
 		});
 
 	});
-
 
 	/**
 	 * 
@@ -100,42 +106,23 @@ $(document).ready(function(){
 				lineColor: Highcharts.getOptions().colors[3],
 				fillColor: 'white'
 			}
-		}, {
-			type: 'pie',
-			name: 'Total consumption',
-			data: [{
-				name: 'Jane',
-				y: 13,
-				color: Highcharts.getOptions().colors[0] // Jane's color
-			}, {
-				name: 'John',
-				y: 23,
-				color: Highcharts.getOptions().colors[1] // John's color
-			}, {
-				name: 'Joe',
-				y: 19,
-				color: Highcharts.getOptions().colors[2] // Joe's color
-			}],
-			center: [100, 80],
-			size: 100,
-			showInLegend: false,
-			dataLabels: {
-				enabled: false
-			}
-		}]
+		}
+		]
 	});
-
-
-
-
-
+	
 	/**
 	 * Highchart for displaying timeline view of energy consumption
 	 */
+	$.getJSON('/api/device/getAllDevicesEnergy', function (data) {
+		
+		var series = [];
 
-	$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
-
-		// Create the chart
+		for (var i=0 ; i< data.length; i++) {
+			var startDateTime = new Date(data[i].energy_date);
+			var date = moment(startDateTime, "MM/DD/YYYY HH:mm").unix()*1000;
+			series.push([date,data[i].energy_consumed]);
+		}
+		
 		var chart = Highcharts.stockChart('highchart3', {
 
 			chart: {
@@ -146,17 +133,13 @@ $(document).ready(function(){
 				text: 'Energy consumption timeline'
 			},
 
-			subtitle: {
-				text: 'Click small/large buttons or change window size to test responsiveness'
-			},
-
 			rangeSelector: {
 				selected: 1
 			},
 
 			series: [{
-				name: 'AAPL Stock Price',
-				data: data,
+				name: 'Energy Consumed',
+				data: series,
 				type: 'area',
 				threshold: null,
 				tooltip: {
@@ -183,7 +166,8 @@ $(document).ready(function(){
 				}]
 			}
 		});
-
+		
+		
 	});
 
 });
