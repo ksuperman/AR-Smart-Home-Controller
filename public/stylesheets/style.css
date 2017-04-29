@@ -1,4 +1,11 @@
 .left-header-button {
   left: 60px; }
 
+@media only screen and (min-width: 992px) {
+  .main canvas#awe_canvas-0 {
+    position: relative !important; } }
+
+.main canvas#image_capture {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,8 @@
+{
+	"Hello": "Hello",
+	"Language": "English",
+	"Lamp": "Lamp (Power Consumption 30W)",
+	"Computer": "Computer(Power Consumption 140W)",
+	"Temperature": "Outside Temp - 68° Fahrenheit",
+	"Hello i18n": "Hello i18n"
+}

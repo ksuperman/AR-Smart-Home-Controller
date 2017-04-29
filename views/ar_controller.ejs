@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AR Smart Home Controller</title>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Stylesheet Library -->
+    <link rel='stylesheet' href='/bower_components/materialize/dist/css/materialize.css'/>
+
+    <!-- Stylesheet Custom -->
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+
+    <!-- Script Library -->
+    <script>
+        var FloorLampLabel = "<%- __('Lamp')%>" ;
+        var LaptopLabel = "<%- __('Computer')%>";
+        var WindowLabel = "<%- __('Temperature')%>";
+        var WelcomeLabel = "<%- __('Hello')%>";
+    </script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/materialize/dist/js/materialize.js"></script>
+    <script src="/javascripts/lib/imagecapture/imagecapture.js"></script>
+    <script src="/javascripts/lib/mqtt/mqttws31.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/javascripts/lib/clarfai/clarifai-2.0.9.js"></script>
+</head>
+<body>
+<div id="header" class="header"></div>
+<div id="sidenav" class="sidenav"></div>
+<div class="main">
+    <canvas id="image_capture"></canvas>
+    <div id="container"></div>
+</div>
+<div id="footer" class="footer"></div>
+
+<!-- Initialize Scripts -->
+<script src="/javascripts/initialize.js"></script>
+
+<!-- Awe Scripts -->
+<script type="text/javascript" src="/javascripts/lib/awe/awe-v8.js"></script>
+<script type="text/javascript" src="/javascripts/lib/awe/awe-loader.js"></script>
+<script type="text/javascript" src="/javascripts/arcontroller/mainController.js"></script>
+
+<!-- Image Processing -->
+<script defer async src="/javascripts/arcontroller/imageProcessor.js"></script>
+</body>
+</html>
