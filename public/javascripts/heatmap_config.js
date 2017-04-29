@@ -130,8 +130,31 @@ $(document).ready(function(){
      * Highchart for displaying devices used
      */
     $.getJSON('/api/device/getAllDevices', function (data) {
-        
-        var series = [
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/energy/getDeviceConsumption',
+            data: 
+            dataType: 'json',                              
+        }).done(function(result) {
+            console.log("RESULT");
+        }).fail(function(xhr, status, error) {
+            console.log(error);
+        });
+
+        $.ajax({
+            url : "AJAX_POST_URL",
+            type: ="POST",
+            data : { device_id : data.},
+            success: function(data, textStatus, jqXHR) {
+                    //data - response from server
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+ 
+            }
+        });
+        $.getJSON('/api/energy/getDeviceConsumption', function (consumption) {
+            var series = [
                [0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67],
                [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48],
                [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52],
@@ -154,6 +177,10 @@ $(document).ready(function(){
             for (var date = data[i].device_util_startTime; date < ) {
                 if (getDay(date) == MON) {
                     monElec
+                } else if () {
+
+                } else if () {
+                    
                 }
                 series.push([i, 0, data[i].device_energy_consumption])             
             }   
@@ -212,6 +239,7 @@ $(document).ready(function(){
                 }
             }]
         });
+    });
 
     });
 

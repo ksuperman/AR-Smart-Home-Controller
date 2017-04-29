@@ -6,14 +6,10 @@ var autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(connection);
 
 var energyModel = new mongoose.Schema({
-	entry_id : {type: Number, unique: true},
-	device_id: {type: Number},
+	device_id: {type: mongoose.Schema.Types.ObjectId, ref: 'device'},
 	device_util_date: {type: Date, default: Date.now,},
-	device_util_startTime: {type: Date, default: Date.now,},
-	device_util_endTime: {type: Date, default: +new Date() + 2*60*60*1000},
 	device_energy_consumption: {type: Number}
 });
-
 
 var energyConsumption = mongoose.model('energyConsumption', energyModel);
 
