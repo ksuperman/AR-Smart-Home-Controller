@@ -4,5 +4,11 @@
 	"Lamp": "Lamp (Power Consumption 30W)",
 	"Computer": "Computer(Power Consumption 140W)",
 	"Temperature": "Outside Temp - 68° Fahrenheit",
-	"Hello i18n": "Hello i18n"
+	"Hello i18n": "Hello i18n",
+	"TeamName": "Team Awesome",
+
+	"Dashboard": "Dashboard",
+	"Device Management": "Device Management",
+	"Utilization Monitor": "Utilization Monitor",
+	"Smart Home Controller": "Smart Home Controller"
 }

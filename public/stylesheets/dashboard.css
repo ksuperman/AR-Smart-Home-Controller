@@ -1,3 +1,7 @@
 .highcharts-credits {
 	display: none;
 }
+
+.dataTables_length select{
+	display: block !important;
+}

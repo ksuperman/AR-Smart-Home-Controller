@@ -4,5 +4,10 @@
 	"Lamp": "Lampadaire (consommation d'énergie 30W)",
 	"Computer": "Ordinateur (consommation d'énergie 140W)",
 	"Temperature": "Temp extérieur - 20° Celsius",
-	"Hello i18n": "Hello i18n"
+	"Hello i18n": "Hello i18n",
+	"TeamName": "Équipe Awesome",
+	"Dashboard": "Tableau de bord",
+	"Device Management": "Gestion d'appareils",
+	"Utilization Monitor": "Moniteur d'utilisation",
+	"Smart Home Controller": "Contrôle à domicile"
 }
