@@ -32,14 +32,8 @@ $(document).ready(function(){
         });
 	});
 /*Pagination*/
-    $('#pagination').materializePagination({
-        align: 'center',
-        lastPage:  3,
-        firstPage:  1,
-        urlParameter: 'page',
-        useUrlParameter: true,
-        onClickCallback: function(requestedPage){
-            console.log('Requested page is '+ requestedPage);
-        }
-    });
+    $('#example').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [4, 6, 10, 25]
+	});
 });
