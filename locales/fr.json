@@ -1,0 +1,8 @@
+{
+	"Hello": "Bonjour",
+	"Language": "La langue",
+	"Lamp": "Lampadaire (consommation d'énergie 30W)",
+	"Computer": "Ordinateur (consommation d'énergie 140W)",
+	"Temperature": "Temp extérieur - 20° Celsius",
+	"Hello i18n": "Hello i18n"
+}
