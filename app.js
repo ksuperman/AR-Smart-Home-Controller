@@ -18,10 +18,21 @@ i18n.configure({
 /* Setup Routes for the Application*/
 var index = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./api/deviceapi');
 var arcontroller = require('./routes/ar_controller');
 
 /* Application init */
 var app = express();
+var mongoose = require('mongoose');
+var mongourl = 'mongodb://teamawsome:FinallyAwsome1#@ds115701.mlab.com:15701/teamawsome'
+mongoose.Promise = global.Promise;
+
+mongoose.connect(mongourl, function(err) {
+    if (err) throw err;
+    console.log("Successfully Connected to cloud mongodb");
+});
+
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -38,7 +49,7 @@ app.use(session({
     cookie: { maxAge: 60000 }
 }));
 
-/* i18n Init*/
+/* i18n Init */
 app.use(i18n.init);
 
 /* SASS Middleware */
@@ -62,7 +73,9 @@ app.use(function(req, res, next) {
 
 /* Application Routes */
 app.use('/', index);
+app.use('/datatable', index);
 app.use('/users', users);
+app.use('/api/device', api);
 app.use('/arcontroller', arcontroller);
 
 /* Error Interceptor */
