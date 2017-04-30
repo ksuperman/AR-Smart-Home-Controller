@@ -6,8 +6,8 @@ router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
 });
 
-router.get('/datatable', function(req, res, next) {
-	res.render('datatable.ejs');
+router.get('/datatable.ejs', function(req, res, next) {
+	res.render('datatable');
 });
 
 module.exports = router;

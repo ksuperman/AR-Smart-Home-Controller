@@ -12,7 +12,7 @@ $(document).ready(function(){
 			series.push(arr);
 		}
 
-		$('#example').DataTable({
+		$('#datatable').DataTable({
 			data: series,
 			columns: [
 			          { title: "Device" },

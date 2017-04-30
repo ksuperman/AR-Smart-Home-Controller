@@ -18,6 +18,8 @@
     "jquery": "^3.2.1",
     "materialize": "^0.98.2",
     "highcharts": "^5.0.10",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "datatables.net": "^1.10.15",
+    "datatables.net-dt": "^3.2.2"
   }
 }
