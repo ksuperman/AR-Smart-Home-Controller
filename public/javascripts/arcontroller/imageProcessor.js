@@ -60,7 +60,8 @@ function handleObjectDetection(objectClass) {
         monProjId,
         monPoiId,
         monTextId,
-        windowTextId;
+        windowTextId,
+        windowTextPoiId;
 
     console.log("povCoordinates ==> ", povCoordinates);
 
@@ -101,14 +102,14 @@ function handleObjectDetection(objectClass) {
                     "text": FloorLampLabel
                 },
                 scale: {
-                    x: 1,
-                    y: 1,
-                    z: 1
+                    x: 0.3,
+                    y: 0.3,
+                    z: 0.3
                 },
                 postion: {x: 0, y: 10, z: 0},
                 material: {
                     type: 'phong',
-                    color: 0xCCCCCC,
+                    color: 0xFFFFFF,
                 },
                 rotation: {x: 0, y: 50, z: 0},
                 //texture: {path: '/models/news.mp4'},
@@ -135,7 +136,7 @@ function handleObjectDetection(objectClass) {
                 rotation: {x: 0, y: -50, z: 0},
                 material: {
                     type: 'phong',
-                    color: 0xCCCCCC,
+                    color: 0xFFFFFF,
                 },
                 texture: {path: '/models/powericon3.jpg'},
             }, {poi_id: monPoiId});
@@ -152,16 +153,16 @@ function handleObjectDetection(objectClass) {
                     "text": LaptopLabel
                 },
                 scale: {
-                    x: 0.5,
-                    y: 0.5,
-                    z: 0.5
+                    x: 0.3,
+                    y: 0.3,
+                    z: 0.3
                 },
-                postion: {x: 100, y: 10, z: 0},
+                //postion: {x: 100, y: 10, z: 0},
                 material: {
                     type: 'phong',
                     color: 0xFFFFFF,
                 },
-                rotation: {x: 0, y: -50, z: 0},
+                rotation: {x: 0, y: 50, z: 0},
             }, {poi_id: monPoiId});
             break;
 
@@ -172,7 +173,7 @@ function handleObjectDetection(objectClass) {
             windowTextId = 'windowTextP';
 
             var povCoordinatesText = $.extend({},povCoordinates);
-            povCoordinatesText.y -= 20;
+            povCoordinatesText.y += 20;
 
             awe.pois.add({id: windowPoiId, position: povCoordinates});
             awe.pois.add({id: windowTextPoiId, position: povCoordinatesText});
@@ -205,16 +206,16 @@ function handleObjectDetection(objectClass) {
                     "text": WindowLabel
                 },
                 scale: {
-                    x: 0.5,
-                    y: 0.5,
-                    z: 0.5
+                    x: 0.3,
+                    y: 0.3,
+                    z: 0.3
                 },
                 postion: {x: 100, y: 300, z: 0},
                 material: {
                     type: 'phong',
                     color: 0xFFFFFF,
                 },
-                rotation: {x: 0, y: -50, z: 0},
+                rotation: {x: 0, y: 30, z: 0},
             }, {poi_id: windowTextPoiId});
             break;
 
