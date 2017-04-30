@@ -19,17 +19,16 @@
     <script src="/bower_components/materialize/dist/js/materialize.js"></script>
   </head>
   <body>
-  <!--<h1><%= __('Hello i18n')%></h1>
+  <!--<h1><%= __('Hello')%></h1>
   <h1><%= __("Language")%></h1>-->
-  <div id="header" class="header"></div>
-  <div id="sidenav" class="sidenav"></div>
+  <% include header %>
+  <% include sidenav %>
   <div class="main">
     <div class="container">
       <!-- Page Content goes here -->
     </div>
   </div>
-  <div id="footer" class="footer"></div>
-
+  <% include footer %>
   <!-- Initialize Scripts -->
   <script src="/javascripts/initialize.js"></script>
   </body>

@@ -29,13 +29,13 @@
     <script type="text/javascript" src="/javascripts/lib/clarfai/clarifai-2.0.9.js"></script>
 </head>
 <body>
-<div id="header" class="header"></div>
-<div id="sidenav" class="sidenav"></div>
+<% include header %>
+<% include sidenav %>
 <div class="main">
     <canvas id="image_capture"></canvas>
     <div id="container"></div>
 </div>
-<div id="footer" class="footer"></div>
+<% include footer %>
 
 <!-- Initialize Scripts -->
 <script src="/javascripts/initialize.js"></script>
