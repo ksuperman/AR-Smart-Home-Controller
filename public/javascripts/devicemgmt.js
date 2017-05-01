@@ -12,7 +12,6 @@ $(document).ready(function(){
 		console.log(error);
 	});
 
-
 	/**
 	 * Populate Cards in Device Management Tab
 	 */
@@ -23,6 +22,7 @@ $(document).ready(function(){
 		
 		for (var i=0 ; i< data.length; i++) {
 		    series.push({"dev_id" : data[i].device_id, "name" : data[i].device_name,"lastused":data[i].device_util_startTime,"total_cons":data[i].device_energy_consumption,"img_path":data[i].device_img_path});
+
 		}
         $.each(series, function (key, data) {
             //Loop to write all card element with json. (i is index for card in json.)

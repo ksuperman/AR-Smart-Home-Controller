@@ -64,6 +64,7 @@ router.get('/getDevice', function(req, res, next) {
 router.get('/getUniqueDevices', function(req, res, next) {
     console.log("/getUniqueDevices");
     device.find().sort('device_id').find( function (err, document) {
+
         if(err){
             console.log(err);
             throw err;
