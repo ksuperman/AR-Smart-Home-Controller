@@ -71,7 +71,9 @@ router.get('/insertDevicesEnergy', function(req, res, next) {
 	for(var i = 950; i >=7; i--){
 		var date = moment(moment().subtract(i, 'days').calendar(), "MM/DD/YYYY HH:mm").unix()*1000;
 		var energy = Math.ceil(Math.random()*1000);
-		data.push({"energy_date" : date,"energy_consumed" : energy});
+		var timeUsage = Math.ceil(Math.random()*100);
+		var devicesUsed = Math.ceil(Math.random()*10);
+		data.push({"energy_date" : date,"energy_consumed" : energy,"devices_used" : devicesUsed,"time_usage" : timeUsage});
 	}
 	
 	energyConsumed.insertMany(data, function(err, docs){

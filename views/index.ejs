@@ -10,10 +10,13 @@
   
    <!-- Stylesheet Library -->
 	<link rel='stylesheet' href='/bower_components/materialize/dist/css/materialize.css' />
+	<link rel='stylesheet' href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
   
   <!-- Stylesheet Custom -->
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<link rel='stylesheet' href='/stylesheets/dashboard.css' />
+	<link rel='stylesheet' href="/stylesheets/sb-admin-2.css" />
+	
   
   <!-- Script Library -->
 	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
@@ -22,15 +25,82 @@
 	<script src="/bower_components/highcharts/modules/exporting.js"></script>
 	<script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 	<script src="/bower_components/moment/moment.js"></script>
+	<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script>
+		var hc_title1 = "<%- __('Device Utilization Chart')%>";
+		var hc_subtitle1 = "<%- __('Device')%>";
+		var hc_title3 = "<%- __('Energy Consumption Timeline')%>";
+		var hc_subtitle3 = "<%- __('Energy Consumed')%>";
+	</script>
 </head>
 <body>
-	<!--<h1><%= __('Hello')%></h1>
-  <h1><%= __("Language")%></h1>-->
   <% include header %>
   <% include sidenav %>
 	<div class="main">
 		<div class="container">
 			<div id="mainbody">
+				<div class="row">
+					<div class="col s3">
+						<div class="panel panel-primary">
+	                        <div class="panel-heading">
+	                            <div class="row">
+	                                <div class="col s3">
+	                                    <i class="large material-icons">info_outline</i>
+	                                </div>
+	                                <div class="col s9 text-right">
+	                                    <div class="datePanel" id="currentDate"></div>
+	                                    <div><%= __('Date')%></div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>						
+					</div>
+					<div class="col s3">
+						<div class="panel panel-green">
+							<div class="panel-heading">
+	                            <div class="row">
+	                                <div class="col s3">
+	                                    <i class="large material-icons">settings_input_composite</i>
+	                                </div>
+	                                <div class="col s9 text-right">
+	                                    <div class="huge" id="energyConsumed"></div>
+	                                    <div><%= __('Energy Consumed')%></div>
+	                                </div>
+	                            </div>
+	                        </div>
+						</div>
+					</div>
+					<div class="col s3">
+						<div class="panel panel-yellow">
+							<div class="panel-heading">
+	                            <div class="row">
+	                                <div class="col s3">
+	                                    <i class="large material-icons">schedule</i>
+	                                </div>
+	                                <div class="col s9 text-right">
+	                                    <div class="huge" id="timeUsed"></div>
+	                                    <div><%= __('Total Time Usage')%></div>
+	                                </div>
+	                            </div>
+	                        </div>
+						</div>
+					</div>
+					<div class="col s3">
+						<div class="panel panel-red">
+							<div class="panel-heading">
+	                            <div class="row">
+	                                <div class="col s3">
+	                                    <i class="large material-icons">perm_device_information</i>
+	                                </div>
+	                                <div class="col s9 text-right">
+	                                    <div class="huge" id="devicesUsed"></div>
+	                                    <div><%= __('Devices Switched On')%></div>
+	                                </div>
+	                            </div>
+	                        </div>
+						</div>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col s6">
 						<div id="highchart1"></div>

@@ -5,7 +5,9 @@ var connection = mongoose.createConnection(mongourl);
 
 var energyModel = new mongoose.Schema({
 	energy_date: {type: Date},
-	energy_consumed: {type: Number}
+	energy_consumed: {type: Number},
+	devices_used: {type: Number},
+	time_usage: {type: Number}
 });
 
 var device = mongoose.model('energyUsage', energyModel);
