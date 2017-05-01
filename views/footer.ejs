@@ -3,25 +3,23 @@
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="white-text">Footer Content</h5>
-                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
-                        content.</p>
+                    <h5 class="white-text"><%= __('TeamName')%></h5>
+                    <p class="grey-text text-lighten-4"><%= __('Slogan')%></p>
                 </div>
                 <div class="col l4 offset-l2 s12">
-                    <h5 class="white-text">Links</h5>
+                    <h5 class="white-text"><%= __('Links')%></h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        <li><a class="grey-text text-lighten-3" href="/"><i class="material-icons">dashboard</i><%= __('Dashboard')%></a></li>
+                        <li><a class="grey-text text-lighten-3" href="/deviceManagement"><i class="material-icons">device_hub</i><%= __('Device Management')%></a></li>
+                        <li><a class="grey-text text-lighten-3" href="/heatmap"><i class="material-icons">pageview</i><%= __('Utilization Monitor')%></a></li>
+                        <li><a class="grey-text text-lighten-3" href="/datatable"><i class="material-icons">list</i><%= __('Datatable')%></a></li>
+                        <li><a class="grey-text text-lighten-3" href="/arcontroller"><i class="material-icons">remove_red_eye</i><%= __('Smart Home Controller')%></a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="footer-copyright">
-            <div class="container">
-                © 2014 Copyright Text
-                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            <div class="container"><%= __('Copyright')%><a href="https://github.com/ksuperman/AR-Smart-Home-Controller" class="grey-text text-lighten-4 right" href="#!"><%= __('Github')%></a>
             </div>
         </div>
     </footer>

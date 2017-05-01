@@ -21,5 +21,11 @@
 	"Start Time": "Start Time",
 	"End Time": "End Time",
 	"startTime": "startTime",
-	"endTime": "endTime"
+	"endTime": "endTime",
+	"Datatable": "Usage History",
+	"Application": "Smart Home",
+	"Copyright": "© 2017 All Rights Reserved",
+	"Slogan": "Automate the montior of your home using your smart phone without any app.",
+	"Links": "Links",
+	"Github": "Link to Github"
 }

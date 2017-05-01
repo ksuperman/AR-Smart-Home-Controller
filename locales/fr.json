@@ -19,5 +19,11 @@
 	"Device": "Dispositif",
 	"Device Energy Consumption" : "Consommation énergétique des appareils",
 	"Start Time" : "Heure de début",
-	"End Time" : "Heure de fin"
+	"End Time" : "Heure de fin",
+	"Datatable":"Historique d'utilisation",
+	"Application": "Maison intelligente",
+	"Copyright": "© 2017 Tous droits réservés",
+	"Slogan": "Automatiser le moniteur de votre maison à l'aide de votre téléphone intelligent sans aucune application",
+	"Links": "Des liens",
+	"Github": "Lien vers Github"
 }
