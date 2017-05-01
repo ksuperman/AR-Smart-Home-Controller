@@ -6,9 +6,14 @@
 	"Temperature": "Outside Temp - 68° Fahrenheit",
 	"Hello i18n": "Hello i18n",
 	"TeamName": "Team Awesome",
-
 	"Dashboard": "Dashboard",
 	"Device Management": "Device Management",
 	"Utilization Monitor": "Utilization Monitor",
-	"Smart Home Controller": "Smart Home Controller"
+	"Smart Home Controller": "Smart Home Controller",
+	"Datatable": "Usage History",
+	"Application": "Smart Home",
+	"Copyright": "© 2017 All Rights Reserved",
+	"Slogan": "Automate the montior of your home using your smart phone without any app.",
+	"Links": "Links",
+	"Github": "Link to Github"
 }
