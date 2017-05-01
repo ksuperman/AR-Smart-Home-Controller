@@ -6,9 +6,20 @@
 	"Temperature": "Outside Temp - 68° Fahrenheit",
 	"Hello i18n": "Hello i18n",
 	"TeamName": "Team Awesome",
-
 	"Dashboard": "Dashboard",
 	"Device Management": "Device Management",
 	"Utilization Monitor": "Utilization Monitor",
-	"Smart Home Controller": "Smart Home Controller"
+	"Smart Home Controller": "Smart Home Controller",
+	"Device Utilization Chart": "Device Utilization Chart",
+	"Date": "Today's Date",
+	"Energy Consumed": "Energy Consumed",
+	"Total Time Usage": "Total Time Usage",
+	"Devices Switched On": "Devices Switched On",
+	"Energy Consumption Timeline": "Energy Consumption Timeline",
+	"Device": "Device",
+	"Device Energy Consumption": "Device Energy Consumption",
+	"Start Time": "Start Time",
+	"End Time": "End Time",
+	"startTime": "startTime",
+	"endTime": "endTime"
 }

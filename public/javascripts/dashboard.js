@@ -7,7 +7,7 @@ $(document).ready(function(){
 	$.getJSON('/api/device/getAllDevices', function (data) {
 
 		var series = [];
-
+		
 		for (var i=0 ; i< data.length; i++) {
 			var x =new Date(data[i].device_util_startTime);
 			var y =new Date(data[i].device_util_endTime);
@@ -27,7 +27,7 @@ $(document).ready(function(){
 				type: 'pie'
 			},
 			title: {
-				text: 'Device Utilization Chart'
+				text: hc_title1
 			},
 			tooltip: {
 				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -43,7 +43,7 @@ $(document).ready(function(){
 				}
 			},
 			series: [{
-				name: 'Device',
+				name: hc_subtitle1,
 				colorByPoint: true,
 				data: series
 			}]
@@ -102,7 +102,12 @@ $(document).ready(function(){
 	$.getJSON('/api/device/getAllDevicesEnergy', function (data) {
 		
 		var series = [];
-
+		
+		$("#currentDate" ).text(moment().format('L'));
+		$("#energyConsumed" ).text(data[data.length-1].energy_consumed);
+		$("#timeUsed" ).text(data[data.length-1].time_usage);
+		$("#devicesUsed" ).text(data[data.length-1].devices_used);
+		
 		for (var i=0 ; i< data.length; i++) {
 			var startDateTime = new Date(data[i].energy_date);
 			var date = moment(startDateTime, "MM/DD/YYYY HH:mm").unix()*1000;
@@ -116,7 +121,7 @@ $(document).ready(function(){
 			},
 
 			title: {
-				text: 'Energy consumption timeline'
+				text: hc_title3
 			},
 
 			rangeSelector: {
@@ -124,7 +129,7 @@ $(document).ready(function(){
 			},
 
 			series: [{
-				name: 'Energy Consumed',
+				name: hc_subtitle3,
 				data: series,
 				type: 'area',
 				threshold: null,

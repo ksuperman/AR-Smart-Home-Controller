@@ -5,3 +5,17 @@
 .dataTables_length select{
 	display: block !important;
 }
+
+#mainbody{
+	padding-top:20px;
+}
+
+.headingSection{
+	text-align: center;
+}
+
+.datePanel{
+	font-size: 25px;
+	padding-bottom: 12px;
+	padding-top: 10px;
+}
