@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Device Management</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Stylesheet Library -->
+    <link rel='stylesheet' href='/bower_components/materialize/dist/css/materialize.css' />
+
+    <!-- Stylesheet Custom -->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/devdisplay.css' />
+    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
+
+    <!-- Script Library -->
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/materialize/dist/js/materialize.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+</head>
+<body>
+<!--<h1><%= __('Hello')%></h1>
+  <h1><%= __("Language")%></h1>-->
+<% include header %>
+<% include sidenav %>
+<div class="main">
+    <div class="container">
+        <!-- Page Content goes here -->
+        <div class="row">
+            <div class="col s12">
+                <br>
+                <h5>Device Details</h5>
+            </div>
+        </div>
+        <div class="row area">
+
+        </div>
+        <!--Page Content ends-->
+    </div>
+</div>
+<% include footer %>
+<!-- Initialize Scripts -->
+<script src="/javascripts/initialize.js"></script>
+<script src="/javascripts/devicemgmt.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Device Management</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Stylesheet Library -->
+    <link rel='stylesheet' href='/bower_components/materialize/dist/css/materialize.css' />
+
+    <!-- Stylesheet Custom -->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/devdisplay.css' />
+    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
+    <!-- Script Library -->
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/materialize/dist/js/materialize.js"></script>
+    <script src="/bower_components/highcharts/highstock.js"></script>
+    <script src="/bower_components/highcharts/modules/exporting.js"></script>
+    <script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+</head>
+<body>
+<% include header %>
+<% include sidenav %>
+<div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>ID is : <%= id%></p>
+    </div>
+    <div class="modal-footer">
+        <a href="/devicemanagement" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+    </div>
+</div>
+
+<!-- Initialize Scripts -->
+<script src="/javascripts/initialize.js"></script>
+<script src="/javascripts/devdashboard.js"></script>
+</body>
+</html>

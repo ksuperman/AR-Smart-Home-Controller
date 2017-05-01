@@ -61,6 +61,18 @@ router.get('/getDevice', function(req, res, next) {
 	});
 });
 
+/*This API is used to populate unique devices in device management tab*/
+router.get('/getUniqueDevices', function(req, res, next) {
+    console.log("/getUniqueDevices");
+    device.find().sort('device_id').find( function (err, document) {
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        res.send(document);
+    });
+});
+
 /**
  * API TO INSERT ENERGY CONSUMPTION PER DAY
  */
@@ -97,5 +109,7 @@ router.get('/getAllDevicesEnergy', function(req, res, next) {
 		res.send(document);
 	});
 });
+
+
 
 module.exports = router;
