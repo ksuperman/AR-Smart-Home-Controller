@@ -25,5 +25,10 @@
 	"Copyright": "© 2017 Tous droits réservés",
 	"Slogan": "Automatiser le moniteur de votre maison à l'aide de votre téléphone intelligent sans aucune application",
 	"Links": "Des liens",
-	"Github": "Lien vers Github"
+	"Github": "Lien vers Github",
+	"Gas" : "Gaz",
+	"Water" : "Eau",
+	"Electricity" : "Électricité",
+	"Average" : "Moyenne",
+	"Utility Usage Chart" : "Graphique d'utilisation de l'utilité"	
 }
