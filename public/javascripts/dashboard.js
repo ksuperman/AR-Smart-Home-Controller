@@ -7,7 +7,7 @@ $(document).ready(function(){
 	$.getJSON('/api/device/getAllDevices', function (data) {
 
 		var series = [];
-		
+
 		for (var i=0 ; i< data.length; i++) {
 			var x =new Date(data[i].device_util_startTime);
 			var y =new Date(data[i].device_util_endTime);
@@ -27,10 +27,10 @@ $(document).ready(function(){
 				type: 'pie'
 			},
 			title: {
-				text: hc_title1
+				text: hc1_title
 			},
 			tooltip: {
-				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				pointFormat: '{series.name}: <b> {point.percentage:.1f}%</b>'
 			},
 			plotOptions: {
 				pie: {
@@ -43,77 +43,106 @@ $(document).ready(function(){
 				}
 			},
 			series: [{
-				name: hc_subtitle1,
+				name: hc1_subtitle,
 				colorByPoint: true,
 				data: series
 			}]
 		});
-		
-		/**
-		 * Highcharts for displaying something needs to be decided
-		 */
+
+	});
+
+	/**
+	 * Highchart for displaying monthly usage of utilities
+	 */
+	$.getJSON('/api/device/getAllUtilityConsumption', function (data) {
+
+		var months = [];
+		var waterUsage = [];
+		var gasUsage = [];
+		var electricityUsage = [];
+		var avgUsage = [];
+
+		for (var i=0 ; i< data.length; i++) {
+			var waterUsg = data[i].water_usage;
+			var gasUsg = data[i].gas_usage;
+			var electrictyUsg = data[i].electricity_usage;
+			var avg = (waterUsg+gasUsg+electrictyUsg)/3;
+			console.log(data[i].utility_month);
+			months.push(data[i].utility_month);
+			waterUsage.push(waterUsg);
+			gasUsage.push(gasUsg);
+			electricityUsage.push(electrictyUsg);
+			avgUsage.push(avg)
+		}
+
 		Highcharts.chart('highchart2', {
 			title: {
-				text: 'Combination chart'
+				text: hc2_title
 			},
 			xAxis: {
-				categories: ['Apples', 'Oranges', 'Pears', 'Bananas', 'Plums']
+				categories: months
 			},
 			labels: {
 				items: [{
-					html: 'Total fruit consumption',
+					html: 'PG&E Usage',
 					style: {
 						left: '50px',
-						top: '18px',
+						top: '15px',
 						color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
 					}
 				}]
 			},
 			series: [{
 				type: 'column',
-				name: 'Jane',
-				data: [3, 2, 1, 3, 4]
+				name: water,
+				data: waterUsage
 			}, {
 				type: 'column',
-				name: 'John',
-				data: [2, 3, 5, 7, 6]
+				name: gas,
+				data: gasUsage
 			}, {
 				type: 'column',
-				name: 'Joe',
-				data: [4, 3, 3, 9, 0]
+				name: electricity,
+				data: electricityUsage
 			}, {
 				type: 'spline',
-				name: 'Average',
-				data: [3, 2.67, 3, 6.33, 3.33],
+				name: average,
+				data: avgUsage,
 				marker: {
 					lineWidth: 2,
-					lineColor: Highcharts.getOptions().colors[3],
+					lineColor: Highcharts.getOptions
+
+					().colors[3],
 					fillColor: 'white'
 				}
 			}
 			]
 		});
 
+
 	});
+
 
 	/**
 	 * Highchart for displaying timeline view of energy consumption
 	 */
 	$.getJSON('/api/device/getAllDevicesEnergy', function (data) {
-		
+
 		var series = [];
-		
+
 		$("#currentDate" ).text(moment().format('L'));
-		$("#energyConsumed" ).text(data[data.length-1].energy_consumed);
+		$("#energyConsumed" ).text(data[data.length-
+
+		                                1].energy_consumed);
 		$("#timeUsed" ).text(data[data.length-1].time_usage);
 		$("#devicesUsed" ).text(data[data.length-1].devices_used);
-		
+
 		for (var i=0 ; i< data.length; i++) {
 			var startDateTime = new Date(data[i].energy_date);
 			var date = moment(startDateTime, "MM/DD/YYYY HH:mm").unix()*1000;
 			series.push([date,data[i].energy_consumed]);
 		}
-		
+
 		var chart = Highcharts.stockChart('highchart3', {
 
 			chart: {
@@ -121,7 +150,7 @@ $(document).ready(function(){
 			},
 
 			title: {
-				text: hc_title3
+				text: hc3_title
 			},
 
 			rangeSelector: {
@@ -129,7 +158,7 @@ $(document).ready(function(){
 			},
 
 			series: [{
-				name: hc_subtitle3,
+				name: hc3_subtitle,
 				data: series,
 				type: 'area',
 				threshold: null,
@@ -157,8 +186,8 @@ $(document).ready(function(){
 				}]
 			}
 		});
-		
-		
+
+
 	});
 
 });

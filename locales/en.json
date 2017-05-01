@@ -27,5 +27,10 @@
 	"Copyright": "© 2017 All Rights Reserved",
 	"Slogan": "Automate the montior of your home using your smart phone without any app.",
 	"Links": "Links",
-	"Github": "Link to Github"
+	"Github": "Link to Github",
+	"Gas" : "Gas",
+	"Water" : "Water",
+	"Electricity" : "Electricity",
+	"Average" : "Average",
+	"Utility Usage Chart" : "Utility Usage Chart"	
 }
