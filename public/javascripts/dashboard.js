@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
 	/**
 	 * Highchart for displaying devices used
 	 */
@@ -189,5 +188,4 @@ $(document).ready(function(){
 
 
 	});
-
 });
