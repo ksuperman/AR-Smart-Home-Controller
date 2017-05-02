@@ -9,7 +9,7 @@ router.post('/insertDevice', function(req, res, next) {
 	
 	var deviceInstance = new deviceModel({
 		device_name: req.body.device_name,
-		device_loc: req.body.device_loc;
+		device_loc: req.body.device_loc
 	});
 	
 	deviceInstance.save(function (err) {
@@ -32,8 +32,8 @@ router.post('/insertEnergyUtil', function(req, res, next) {
 		}
 		var energyInstance = new energyModel({
 			device_id: document._id,
-			device_util_date: req.body.device_util_date,
-			device_energy_consumption: Math.ceil(Math.random()*1000)
+			energy_date: req.body.energy_date,
+			energy_consumed: Math.ceil(Math.random()*1000)
 		});
 
 		energyInstance.save(function (err) {
@@ -50,7 +50,7 @@ router.post('/insertEnergyUtil', function(req, res, next) {
 router.post('/getAllDeviceConsumptionForWeek', function(req, res, next) {
 
 	energyModel.find({
-		"device_util_date": {"$gte": req.body.from_date, "$lte": req.body.to_date}
+		"energy_date": {"$gte": req.body.from_date, "$lte": req.body.to_date}
 	  })
      .populate('device_id')
      .exec(function(err, document){
@@ -66,13 +66,19 @@ router.post('/getAllDeviceConsumptionForWeek', function(req, res, next) {
 
 router.get('/getDeviceConsumption', function(req, res, next) {
 	console.log("/getDeviceConsumption");	
-	deviceModel.findOne({ device_id: req.body.device_id}, function (err, document){
-		if(err){
-			console.log(err);
-			throw err;
-		}
-		res.send(document);
-	});
+	energyModel.find({
+		"device_id": req.body.device_id
+	  })
+     .populate('device_id')
+     .exec(function(err, document){
+    	   if (err) {
+    	 	  console.log(err);
+    	 	  throw err;    		 
+    	   }
+          console.log(document);
+          console.log(document[0].device_id.device_name);
+          res.send(document);
+     })
 });
 
 module.exports = router;

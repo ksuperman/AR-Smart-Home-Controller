@@ -7,10 +7,10 @@ autoIncrement.initialize(connection);
 
 var energyModel = new mongoose.Schema({
 	device_id: {type: mongoose.Schema.Types.ObjectId, ref: 'device'},
-	device_util_date: {type: Date, default: Date.now,},
-	device_energy_consumption: {type: Number}
+	energy_date: {type: Date, default: Date.now,},
+	energy_consumed: {type: Number}
 });
 
-var energyConsumption = mongoose.model('energyConsumption', energyModel);
+var energyConsumption = mongoose.model('devusages', energyModel);
 
 module.exports = energyConsumption;

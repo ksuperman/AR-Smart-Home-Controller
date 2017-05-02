@@ -24,15 +24,6 @@ router.post('/insertDevice', function(req, res, next) {
 		}
 	});
 	
-	/*device.insertMany(arr, function(err, docs){
-		if (err) {
-			console.log(err);
-			res.send("error");
-		} else {
-			res.send("success");
-		}
-	});*/
-	
 });
 
 /**
