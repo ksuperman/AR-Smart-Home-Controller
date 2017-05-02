@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DATA TABLE</title>
+    <title>Energy Consumption</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -18,12 +18,19 @@
     <script src="/bower_components/highcharts/modules/exporting.js"></script>
     <script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="/bower_components/moment/moment.js"></script>
+    <script>
+    	var device = "<%- __('Device')%>";
+    	var startTime = "<%- __('Start Time')%>";
+    	var endTime = "<%- __('End Time')%>";
+    	var energyConsumption = "<%- __('Energy Consumed')%>";
+    </script>
 </head>
 <body>
 <% include header %>
 <% include sidenav %>
 <div class="main">
     <div class="container">
+    	<div class="headingSection"><h4><%- __('Device Energy Consumption')%></h4></div>
         <table id="datatable" class="display"></table>
     </div>
 </div>

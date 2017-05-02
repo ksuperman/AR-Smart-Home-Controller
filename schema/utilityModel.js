@@ -4,10 +4,10 @@ mongoose.Promise = global.Promise;
 var connection = mongoose.createConnection(mongourl);
 
 var utilityModel = new mongoose.Schema({
-    utility_month: {type: String},
-    water_usage: {type: Number},
-    gas_usage: {type: Number},
-    electricity_usage: {type: Number}
+	utility_month: {type: String},
+	water_usage: {type: Number},
+	gas_usage: {type: Number},
+	electricity_usage: {type: Number}
 });
 
 var utility = mongoose.model('utilityUsage', utilityModel);

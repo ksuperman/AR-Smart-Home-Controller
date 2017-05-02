@@ -15,10 +15,10 @@ $(document).ready(function(){
 		$('#datatable').DataTable({
 			data: series,
 			columns: [
-			          { title: "Device" },
-			          { title: "Start Time" },
-			          { title: "End Time" },
-			          { title: "Energy Consumption" }
+			          { title: device },
+			          { title: startTime },
+			          { title: endTime },
+			          { title: energyConsumption }
 			          ]	
 		});
 

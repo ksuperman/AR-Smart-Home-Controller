@@ -1,132 +1,132 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Smart Home Controller</title>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
+<title>Smart Home Controller</title>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Stylesheet Library -->
-    <link rel='stylesheet'
-          href='/bower_components/materialize/dist/css/materialize.css' />
-    <link rel='stylesheet'
-          href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+<!-- Stylesheet Library -->
+<link rel='stylesheet'
+	href='/bower_components/materialize/dist/css/materialize.css' />
+<link rel='stylesheet'
+	href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
 
-    <!-- Stylesheet Custom -->
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
-    <link rel='stylesheet' href="/stylesheets/sb-admin-2.css" />
+<!-- Stylesheet Custom -->
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='/stylesheets/dashboard.css' />
+<link rel='stylesheet' href="/stylesheets/sb-admin-2.css" />
 
 
-    <!-- Script Library -->
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/bower_components/materialize/dist/js/materialize.js"></script>
-    <script src="/bower_components/highcharts/highstock.js"></script>
-    <script src="/bower_components/highcharts/modules/exporting.js"></script>
-    <script
-            src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="/bower_components/moment/moment.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script>
-        var hc1_title = "<%- __('Device Utilization Chart')%>";
-        var hc1_subtitle = "<%- __('Device')%>";
-        var hc2_title = "<%- __('Utility Usage Chart')%>";
-        var gas = "<%- __('Gas')%>";
-        var water = "<%- __('Water')%>";
-        var electricity = "<%- __('Electricity')%>";
-        var average = "<%- __('Average')%>";
-        var hc3_title = "<%- __('Energy Consumption Timeline')%>";
-        var hc3_subtitle = "<%- __('Energy Consumed')%>";
-    </script>
+<!-- Script Library -->
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/materialize/dist/js/materialize.js"></script>
+<script src="/bower_components/highcharts/highstock.js"></script>
+<script src="/bower_components/highcharts/modules/exporting.js"></script>
+<script
+	src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/bower_components/moment/moment.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+		var hc1_title = "<%- __('Device Utilization Chart')%>";
+		var hc1_subtitle = "<%- __('Device')%>";
+		var hc2_title = "<%- __('Utility Usage Chart')%>";
+		var gas = "<%- __('Gas')%>";
+		var water = "<%- __('Water')%>";
+		var electricity = "<%- __('Electricity')%>";
+		var average = "<%- __('Average')%>";
+		var hc3_title = "<%- __('Energy Consumption Timeline')%>";
+		var hc3_subtitle = "<%- __('Energy Consumed')%>";
+	</script>
 </head>
 <body>
-<% include header %> <% include sidenav %>
-<div class="main">
-    <div class="container">
-        <div id="mainbody">
-            <div class="row">
-                <div class="col s12 m6 l3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col s3">
-                                    <i class="large material-icons">info_outline</i>
-                                </div>
-                                <div class="col s9 text-right">
-                                    <div class="datePanel" id="currentDate"></div>
-                                    <div><%= __('Date')%></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6 l3">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col s3">
-                                    <i class="large material-icons">settings_input_composite</i>
-                                </div>
-                                <div class="col s9 text-right">
-                                    <div class="huge" id="energyConsumed"></div>
-                                    <div><%= __('Energy Consumed')%></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6 l3">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col s3">
-                                    <i class="large material-icons">schedule</i>
-                                </div>
-                                <div class="col s9 text-right">
-                                    <div class="huge" id="timeUsed"></div>
-                                    <div><%= __('Total Time Usage')%></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6 l3">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col s3">
-                                    <i class="large material-icons">perm_device_information</i>
-                                </div>
-                                <div class="col s9 text-right">
-                                    <div class="huge" id="devicesUsed"></div>
-                                    <div><%= __('Devices Switched On')%></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12 m6 l6">
-                    <div id="highchart1"></div>
-                </div>
-                <div class="col s12 m6 l6">
-                    <div id="highchart2"></div>
-                </div>
-                <div class="col s12" style="margin-top:15px">
-                    <div id="highchart3"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<% include footer %>
+	<% include header %> <% include sidenav %>
+	<div class="main">
+		<div class="container">
+			<div id="mainbody">
+				<div class="row">
+					<div class="col s12 m6 l3">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col s3">
+										<i class="large material-icons">info_outline</i>
+									</div>
+									<div class="col s9 text-right">
+										<div class="datePanel" id="currentDate"></div>
+										<div><%= __('Date')%></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col s12 m6 l3">
+						<div class="panel panel-green">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col s3">
+										<i class="large material-icons">settings_input_composite</i>
+									</div>
+									<div class="col s9 text-right">
+										<div class="huge" id="energyConsumed"></div>
+										<div><%= __('Energy Consumed')%></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col s12 m6 l3">
+						<div class="panel panel-yellow">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col s3">
+										<i class="large material-icons">schedule</i>
+									</div>
+									<div class="col s9 text-right">
+										<div class="huge" id="timeUsed"></div>
+										<div><%= __('Total Time Usage')%></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col s12 m6 l3">
+						<div class="panel panel-red">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col s3">
+										<i class="large material-icons">perm_device_information</i>
+									</div>
+									<div class="col s9 text-right">
+										<div class="huge" id="devicesUsed"></div>
+										<div><%= __('Devices Switched On')%></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12 m6 l6">
+						<div id="highchart1"></div>
+					</div>
+					<div class="col s12 m6 l6">
+						<div id="highchart2"></div>
+					</div>
+					<div class="col s12" style="margin-top:15px">
+						<div id="highchart3"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% include footer %>
 
-<!-- Initialize Scripts -->
-<script src="/javascripts/initialize.js"></script>
-<script src="/javascripts/dashboard.js"></script>
+	<!-- Initialize Scripts -->
+	<script src="/javascripts/initialize.js"></script>
+	<script src="/javascripts/dashboard.js"></script>
 </body>
 </html>
