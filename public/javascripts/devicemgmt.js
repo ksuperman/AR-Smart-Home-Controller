@@ -30,9 +30,9 @@ $(document).ready(function(){
 
             $('.area').append('<div class="col s12 m6 l3" >'+'<div class="card"><div class="card-image waves-effect waves-block waves-light"><img class ="activator" src="'+ data.img_path+'" alt="Device Pic"></div>'+
                 '<div class="card-content">'+'<span class="card-title activator grey-text text-darken-4">' + data.name + '<i class="material-icons right">more_vert</i></span>'+
-                '<p><a class="waves-effect waves-light btn" href="/devdash?id='+data.dev_id+'">Dashboard</a></p>' +
-                '</p></div>'+'<div class="card-reveal"><span class="card-title grey-text text-darken-4">ID: ' + data.dev_id+ '<i class="material-icons right">close</i></span><p>Last Used: '
-                +data.lastused+'</p><br><p>Total Consumption: '+data.total_cons+'</p></div></div></div>');
+                '<p><a class="waves-effect waves-light btn mybtn" href="/devdash?id='+data.dev_id+'">'+mydash+'</a></p>' +
+                '</p></div>'+'<div class="card-reveal"><span class="card-title grey-text text-darken-4">ID: ' + data.dev_id+ '<i class="material-icons right">close</i></span><p>'+
+				lastused+': '+data.lastused+'</p><br><p>'+ totalcons+': '+data.total_cons+'</p></div></div></div>');
         });
 	});
 

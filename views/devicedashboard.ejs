@@ -22,8 +22,8 @@
 
     <script>
         var myDevId= parseInt('<%= id%>');
-        var hc4_title = 'Energy Consumption Timeline';
-        var hc4_subtitle ='Energy Consumed';
+        var hc4_title = "<%- __('Energy Consumption Timeline')%>";
+        var hc4_subtitle ="<%- __('Energy Consumed')%>";
     </script>
 
 </head>
@@ -32,16 +32,16 @@
 <% include sidenav %>
 <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content">
-        <h4>Usage History <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Click on close to go back">
+        <h4><%- __('Usage History')%><a class="tooltipped" data-position="right" data-delay="50" data-tooltip="<%- __('Click')%>">
                 <i class="tiny material-icons">info</i></a></h4>
         <div class="row">
-            <div class="col s12 m6 l12">
+            <div class="col s12 m12 l12">
                 <div id="highchart4"></div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <a href="/devicemanagement" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+        <a href="/devicemanagement" class="modal-action modal-close waves-effect waves-green btn-flat "><%- __('Close')%></a>
     </div>
 </div>
 

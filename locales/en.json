@@ -21,5 +21,11 @@
 	"Energy Consumed": "Energy Consumed",
 	"Date": "Date",
 	"Total Time Usage": "Total Time Usage",
-	"Devices Switched On": "Devices Switched On"
+	"Devices Switched On": "Devices Switched On",
+	"Device Details": "Device Details",
+	"Last Used": "Last Used",
+	"Total Consumption": "Total Consumption",
+	"Usage History":"Usage History",
+	"Click":"Click on close to go back",
+	"Close":"Close"
 }
