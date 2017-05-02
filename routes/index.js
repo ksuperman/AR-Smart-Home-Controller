@@ -108,6 +108,14 @@ router.post('/signUp', function(req, res, next) {
 			
 			}	
 		},queryString);
+});
+
+router.get('/devicemanagement',function(req, res, next) {
+    res.render('devicemanagement');
+});
+
+router.get('/devdash',function(req, res, next) {
+    res.render('devicedashboard',{id:req.query.id});
 
 });
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Usage Dashboard</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Stylesheet Library -->
+    <link rel='stylesheet' href='/bower_components/materialize/dist/css/materialize.css' />
+
+    <!-- Stylesheet Custom -->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
+
+    <!-- Script Library -->
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/materialize/dist/js/materialize.js"></script>
+    <script src="/bower_components/highcharts/highstock.js"></script>
+    <script src="/bower_components/highcharts/modules/exporting.js"></script>
+    <script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+
+    <script>
+        var myDevId= parseInt('<%= id%>');
+        var hc4_title = "<%- __('Energy Consumption Timeline')%>";
+        var hc4_subtitle ="<%- __('Energy Consumed')%>";
+    </script>
+
+</head>
+<body>
+<% include header %>
+<% include sidenav %>
+<div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4><%- __('Usage History')%><a class="tooltipped" data-position="right" data-delay="50" data-tooltip="<%- __('Click')%>">
+                <i class="tiny material-icons">info</i></a></h4>
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div id="highchart4"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="/devicemanagement" class="modal-action modal-close waves-effect waves-green btn-flat "><%- __('Close')%></a>
+    </div>
+</div>
+
+<!-- Initialize Scripts -->
+<script src="/javascripts/initialize.js"></script>
+<script src="/javascripts/devdashboard.js"></script>
+</body>
+</html>
