@@ -39,5 +39,22 @@
 	"Water" : "Eau",
 	"Electricity" : "Électricité",
 	"Average" : "Moyenne",
-	"Utility Usage Chart" : "Graphique d'utilisation de l'utilité"	
+	"Utility Usage Chart" : "Graphique d'utilisation de l'utilité",
+	"Team": "Équipe",
+	"Member1": "Rakshit Hatwar",
+	"Member2": "Vishwanath Iyer",
+	"Member3": "Ashwin Angle",
+	"Member4": "Jagruti Patil",
+	"Member5": "Prajwal Kondawar",
+	"Login": "S'identifier",
+	"SignUp": "S'inscrire",
+	"App_Header": "Comment notre application vous aide-t-elle à contrôler votre maison!",
+	"Content1": "Nous utilisons la Réalité Augmentée pour rendre votre expérience très simple.",
+	"Content2": "Il suffit de pointer votre téléphone sur le périphérique / équipement que vous souhaitez contrôler.",
+	"Content3": "Sur la base de l'équipement, nous vous indiquons le menu correspondant pour contrôler l'équipement.",
+	"Content4": "Nous maintenons également votre historique d'utilisation et le montre dans des tableaux de bord intuitifs.",
+	"email_enter": "Entrer votre Email",
+	"password_enter": "Tapez votre mot de passe",
+	"fname_enter": "Entrez votre prénom",
+	"lname_enter": "Entrez votre nom de famille"
 }

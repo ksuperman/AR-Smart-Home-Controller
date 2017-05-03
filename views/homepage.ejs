@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Homepage - Smart Home Controller</title>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Stylesheet Library -->
+<link rel='stylesheet'
+	href='/bower_components/materialize/dist/css/materialize.css' />
+<link rel='stylesheet'
+	href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+
+
+<!-- Stylesheet Custom -->
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='/stylesheets/dashboard.css' />
+<link rel='stylesheet' href="/stylesheets/sb-admin-2.css" />
+
+
+<!-- Script Library -->
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/materialize/dist/js/materialize.js"></script>
+<script src="/bower_components/highcharts/highstock.js"></script>
+<script src="/bower_components/highcharts/modules/exporting.js"></script>
+<script
+	src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/bower_components/moment/moment.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+		var hc1_title = "<%- __('Device Utilization Chart')%>";
+		var hc1_subtitle = "<%- __('Device')%>";
+		var hc2_title = "<%- __('Utility Usage Chart')%>";
+		var gas = "<%- __('Gas')%>";
+		var water = "<%- __('Water')%>";
+		var electricity = "<%- __('Electricity')%>";
+		var average = "<%- __('Average')%>";
+		var hc3_title = "<%- __('Energy Consumption Timeline')%>";
+		var hc3_subtitle = "<%- __('Energy Consumed')%>";
+</script>
+</head>
+<body>
+	
+<div id="header" class="header">
+    <nav>
+        <div class="nav-wrapper">
+            
+            <ul class="right hide-on-med-and-down">
+                <li><a class="waves-effect waves-light btn" href="/login"><i class="material-icons left">cloud</i><%= __('Login')%></a></li>
+                <li><a class="waves-effect waves-light btn" href="/signup"><i class="material-icons left">cloud</i><%= __('SignUp')%></a></li>
+            </ul>
+
+        </div>
+    </nav>
+</div>
+
+		<div class="parallax-container">
+	    	<div class="parallax"><img src="images/parallax1.png"></div>
+	  	</div>
+
+	  	<center>
+		  	<div class="section white">
+			    <div class="row container">
+			      <h2 class="header"><%= __('App_Header')%></h2>
+			      <p class="grey-text text-darken-3 lighten-3">
+
+			      	<%= __('Content1')%> <br>
+			      	<%= __('Content2')%> <br>
+			      	<%= __('Content3')%> <br>
+			      	<%= __('Content4')%>
+
+			      </p>
+			    </div>
+		  	</div>
+		</center>
+
+	  	<div class="parallax-container">
+	    	<div class="parallax"><img src="images/parallax2.jpg"></div>
+	  	</div>
+
+	  	<div id="footer" class="footer">
+	    	<footer class="page-footer">
+		        <div class="container">
+		            <div class="row">
+		                <div class="col l6 s12">
+		                    <h5 class="white-text"><%= __('TeamName')%></h5>
+		                    <p class="grey-text text-lighten-4"><%= __('Slogan')%></p>
+		                </div>
+		                <div class="col l4 offset-l2 s12">
+		                    <h5 class="white-text"><%= __('Team')%></h5>
+		                    <ul>
+		                        <li><a class="grey-text text-lighten-3" href="/"><i class="material-icons">perm_identity</i><%= __('Member1')%></a></li>
+		                        <li><a class="grey-text text-lighten-3" href="/deviceManagement"><i class="material-icons">perm_identity</i><%= __('Member2')%></a></li>
+		                        <li><a class="grey-text text-lighten-3" href="/heatmap"><i class="material-icons">perm_identity</i><%= __('Member3')%></a></li>
+		                        <li><a class="grey-text text-lighten-3" href="/datatable"><i class="material-icons">perm_identity</i><%= __('Member4')%></a></li>
+		                        <li><a class="grey-text text-lighten-3" href="/arcontroller"><i class="material-icons">perm_identity</i><%= __('Member5')%></a></li>
+		                    </ul>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="footer-copyright">
+		            <div class="container"><%= __('Copyright')%><a href="https://github.com/ksuperman/AR-Smart-Home-Controller" class="grey-text text-lighten-4 right" href="#!"><%= __('Github')%></a>
+		            </div>
+		        </div>
+	    	</footer>
+		</div>
+
+	<!-- Initialize Scripts -->
+	<script src="/javascripts/homepage.js"></script>
+	<!--<script src="/javascripts/initialize.js"></script>
+	<script src="/javascripts/dashboard.js"></script>-->
+
+</body>
+</html>
