@@ -9,34 +9,35 @@ $(document).ready(function(){
     $("#from").text((fdate.getMonth() + 1) + '/' + fdate.getDate() + '/' +  fdate.getFullYear());
     $("#to").text((tdate.getMonth() + 1) + '/' + tdate.getDate() + '/' +  tdate.getFullYear());
 
-    $( "#btnPrev" ).click(function() {
-        fdate.setDate(fdate.getDate() - fdate.getDay()-7);
-        tdate.setDate(tdate.getDate() - tdate.getDay()-7);
+    $("#btnPrev").click(function() {
+        fdate.setDate(fdate.getDate() - 7);
+        tdate.setDate(tdate.getDate() - 7);
         $("#from").text((fdate.getMonth() + 1) + '/' + fdate.getDate() + '/' +  fdate.getFullYear());
         $("#to").text((tdate.getMonth() + 1) + '/' + tdate.getDate() + '/' +  tdate.getFullYear());
-        //TODO load previous week from current from and to date values
+        loadHighChart1();
     });
     
     
-    $( "#btnNext" ).click(function() {
-        alert( "Handler for .click() called." );
-        //TODO load next week from current from and to date values
+    $("#btnNext").click(function() {
+        fdate.setDate(fdate.getDate() + 7);
+        tdate.setDate(tdate.getDate() + 7);
+        $("#from").text((fdate.getMonth() + 1) + '/' + fdate.getDate() + '/' +  fdate.getFullYear());
+        $("#to").text((tdate.getMonth() + 1) + '/' + tdate.getDate() + '/' +  tdate.getFullYear());
+        loadHighChart1();
     });
 
-
+    $('.collapsible').collapsible();
     loadHighChart1();
     function loadHighChart1() {
         map.clear();
-        $('.collapsible').collapsible();
+        console.log("Loading highcharts again for date " + fdate + "  ---- " + tdate);
         $.ajax({
             type: 'POST',
             url: '/api/energy/getAllDeviceConsumptionForWeek',
-            data: { "from_date": from_date,
-                    "to_date": to_date},
+            data: { "from_date": fdate,
+                    "to_date": tdate},
             dataType: 'json',                              
         }).done(function(result) {
-            console.log("RESULT");
-            console.log(result);
 
             //result in json format here
             for (var i = 0; i < result.length; i++) {

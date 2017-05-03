@@ -93,8 +93,7 @@ router.post('/getAllDeviceConsumptionForWeek', function(req, res, next) {
     	 	  throw err;    		 
     	   }
     	   if (document.length > 0) {
-				console.log(document);
-          		console.log(document[0].device_id.device_name);    	   	
+          		console.log("Got Data from db for week " + req.body.from_date + " -- " + req.body.to_date);
     	   }
           res.send(document);
      })
