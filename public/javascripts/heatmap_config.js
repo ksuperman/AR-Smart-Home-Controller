@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var map = new Map();
+    
     var from_date = "2017-04-23T11:00:03.454Z";
     var to_date = "2017-04-29T11:00:03.454Z";
 
@@ -28,8 +28,10 @@ $(document).ready(function(){
 
     $('.collapsible').collapsible();
     loadHighChart1();
+    loadHighChart2();
+
     function loadHighChart1() {
-        map.clear();
+        var map = new Map();
         console.log("Loading highcharts again for date " + fdate + "  ---- " + tdate);
         $.ajax({
             type: 'POST',
@@ -128,6 +130,66 @@ $(document).ready(function(){
                         color: '#000000'
                     }
                 }]
+        });
+
+        }).fail(function(xhr, status, error) {
+            console.log(error);
+        });
+    }
+
+
+    function loadHighChart2() {
+        var map = new Map();
+        console.log("Loading highcharts again for date " + fdate + "  ---- " + tdate);
+        $.ajax({
+            type: 'POST',
+            url: '/api/energy/getAllDeviceConsumptionForWeek',
+            data: { "from_date": fdate,
+                    "to_date": tdate},
+            dataType: 'json',                              
+        }).done(function(result) {
+
+        Highcharts.chart('highchart2', {
+            colorAxis: {
+                minColor: '#FFFFFF',
+                maxColor: Highcharts.getOptions().colors[0]
+            },
+            series: [{
+                type: 'treemap',
+                layoutAlgorithm: 'squarified',
+                data: [{
+                    name: 'A',
+                    value: 6,
+                    colorValue: 1
+                }, {
+                    name: 'B',
+                    value: 6,
+                    colorValue: 2
+                }, {
+                    name: 'C',
+                    value: 4,
+                    colorValue: 3
+                }, {
+                    name: 'D',
+                    value: 3,
+                    colorValue: 4
+                }, {
+                    name: 'E',
+                    value: 2,
+                    colorValue: 5
+                }, {
+                    name: 'F',
+                    value: 2,
+                    colorValue: 6
+                }, {
+                    name: 'G',
+                    value: 1,
+                    colorValue: 7
+                }]
+            }],
+            title: {
+                text: 'Highcharts Treemap'
+            }
         });
 
         }).fail(function(xhr, status, error) {

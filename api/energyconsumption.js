@@ -33,6 +33,7 @@ router.post('/insertEnergyUtil', function(req, res, next) {
 		var energyInstance = new energyModel({
 			device_id: document._id,
 			energy_date: req.body.energy_date,
+			my_number: Math.floor((Math.random()*11)+1),
 			energy_consumed: Math.ceil(Math.random()*1000)
 		});
 
@@ -61,10 +62,12 @@ router.post('/insertDummyEnergyData', function(req, res, next) {
 
 		for (var energy_date_temp = new Date(from_date); energy_date_temp <= to_date; energy_date_temp.setDate(energy_date_temp.getDate() + 1)) {
 			console.log("Date: " + energy_date_temp);
-			var temp = energy_date_temp + ""
+			var temp = energy_date_temp + "";
+			
 			var energyInstance = new energyModel({
 				device_id: document._id,
 				energy_date: temp,
+				my_number: Math.floor((Math.random()*11)+1),
 				energy_consumed: Math.ceil(Math.random()*1000)
 			});
 
@@ -95,6 +98,33 @@ router.post('/getAllDeviceConsumptionForWeek', function(req, res, next) {
     	   if (document.length > 0) {
           		console.log("Got Data from db for week " + req.body.from_date + " -- " + req.body.to_date);
     	   }
+          res.send(document);
+     })
+});
+
+router.post('/getAggregatedConsumption', function(req, res, next) {
+     energyModel.aggregate([{
+            $group: {
+                _id: '$device_id', // grouping key - group by field district
+                energy_consumed: { $sum: '$energy_consumed' }
+            }
+     },
+     {
+      	$lookup:
+        	{
+          		from: "device",
+          		localField: "device_id",
+          		foreignField: "device_id",
+          		as: "device_data"
+        	}
+   	 	}
+     ]) 
+     .exec(function(err, document){
+    	   if (err) {
+    	 	  console.log(err);
+    	 	  throw err;    		 
+    	   }
+          console.log(document);
           res.send(document);
      })
 });
