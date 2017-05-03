@@ -58,8 +58,10 @@ router.post('/getAllDeviceConsumptionForWeek', function(req, res, next) {
     	 	  console.log(err);
     	 	  throw err;    		 
     	   }
-          console.log(document);
-          console.log(document[0].device_id.device_name);
+    	   if (document.length > 0) {
+				console.log(document);
+          		console.log(document[0].device_id.device_name);    	   	
+    	   }
           res.send(document);
      })
 });

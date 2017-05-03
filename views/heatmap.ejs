@@ -18,8 +18,7 @@
     <!-- Script Library -->
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/materialize/dist/js/materialize.js"></script>
-    <script type="text/javascript" src="/javascript/date.js"></script>
-
+    <script src="/node_modules/collections/collections.min.js"></script>
     <script src="/bower_components/materialize/dist/js/materialize.js"></script>
     <script src="/bower_components/highcharts/highstock.js"></script>
     <script src="/bower_components/highcharts/highcharts.js"></script>
@@ -38,7 +37,7 @@
             </div>
           </div>
                      
-        <p>From: <span id ="from"></span> To: <span id ="to"></span></p>
+        <p>From: <span id ="from"></span><br/> To: <span id ="to"></span></p>
         <input type="button" value="Prev" onclick="loadNext()" id="btnPrev"/> 
         <input type="button" value="Next" onclick="loadPrev()" id="btnNext"/> 
       </div>

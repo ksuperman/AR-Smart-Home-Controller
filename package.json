@@ -7,13 +7,14 @@
   },
   "dependencies": {
     "body-parser": "~1.16.0",
+    "collections": "^5.0.6",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",
     "ejs": "~2.5.5",
     "express": "~4.14.1",
+    "mongoose": "4.7.4",
     "morgan": "~1.7.0",
     "node-sass-middleware": "0.9.8",
-    "mongoose" : "4.7.4", 
     "serve-favicon": "~2.3.2"
   }
 }
