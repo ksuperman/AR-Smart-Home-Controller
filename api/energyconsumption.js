@@ -47,6 +47,39 @@ router.post('/insertEnergyUtil', function(req, res, next) {
 	});			
 });
 
+router.post('/insertDummyEnergyData', function(req, res, next) {
+	console.log("/insertDummyEnergyData");
+	var from_date = new Date(req.body.from_date);
+	var to_date = new Date(req.body.to_date);
+
+	deviceModel.findOne({ device_id: req.body.device_id}, function (err, document){
+		if(err){
+			console.log(err);
+			throw err;
+			res.send("error");	
+		}
+
+		for (var energy_date_temp = new Date(from_date); energy_date_temp <= to_date; ) {
+			var energyInstance = new energyModel({
+				device_id: document._id,
+				energy_date: energy_date_temp,
+				energy_consumed: Math.ceil(Math.random()*1000)
+			});
+			energyInstance.save(function (err) {
+				if (err) {
+					console.log(err);
+					res.send("error");
+				} else {
+					console.log("Inserted for date " + energy_date_temp);
+					var newDate = energy_date_temp.setDate(energy_date_temp.getDate() + 1)
+					energy_date_temp = newDate;
+				}
+			});			
+
+		}
+	});			
+});
+
 router.post('/getAllDeviceConsumptionForWeek', function(req, res, next) {
 
 	energyModel.find({

@@ -1,17 +1,33 @@
 $(document).ready(function(){
+    var map = new Map();
+    var from_date = "2017-04-23T11:00:03.454Z";
+    var to_date = "2017-04-29T11:00:03.454Z";
 
-    var from_date = "2017-04-24T11:00:03.454Z";
-    var to_date = "2017-04-30T11:00:03.454Z";
-
-    var fdate = new Date('2017-04-24T11:00:03.454Z');
-    var tdate = new Date('2017-04-30T11:00:03.454Z');
+    var fdate = new Date(from_date);
+    var tdate = new Date(to_date);
 
     $("#from").text((fdate.getMonth() + 1) + '/' + fdate.getDate() + '/' +  fdate.getFullYear());
     $("#to").text((tdate.getMonth() + 1) + '/' + tdate.getDate() + '/' +  tdate.getFullYear());
 
-    var map = new Map();
-    $('.collapsible').collapsible();
+    $( "#btnPrev" ).click(function() {
+        fdate.setDate(fdate.getDate() - fdate.getDay()-7);
+        tdate.setDate(tdate.getDate() - tdate.getDay()-7);
+        $("#from").text((fdate.getMonth() + 1) + '/' + fdate.getDate() + '/' +  fdate.getFullYear());
+        $("#to").text((tdate.getMonth() + 1) + '/' + tdate.getDate() + '/' +  tdate.getFullYear());
+        //TODO load previous week from current from and to date values
+    });
+    
+    
+    $( "#btnNext" ).click(function() {
+        alert( "Handler for .click() called." );
+        //TODO load next week from current from and to date values
+    });
 
+
+    loadHighChart1();
+    function loadHighChart1() {
+        map.clear();
+        $('.collapsible').collapsible();
         $.ajax({
             type: 'POST',
             url: '/api/energy/getAllDeviceConsumptionForWeek',
@@ -86,7 +102,7 @@ $(document).ready(function(){
                     categories: devices
                 },
                 yAxis : {
-                    categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', "Saturday", "Sunday"],
+                    categories: ["Sunday", 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', "Saturday"],
                     title: null
                 }, 
                 colorAxis : {
@@ -116,4 +132,5 @@ $(document).ready(function(){
         }).fail(function(xhr, status, error) {
             console.log(error);
         });
+    }
 });
