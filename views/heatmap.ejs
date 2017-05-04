@@ -14,6 +14,7 @@
     <!-- Stylesheet Custom -->
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/heatmap.css' />
+    <link rel='stylesheet' href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
 
     <!-- Script Library -->
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
@@ -34,17 +35,29 @@
           <div class="row">
             <div class="col l12">
               <div id="highchart1"></div>
-              <p>From: <span id ="from"></span><br/> To: <span id ="to"></span></p>
-              <input type="button" value="Prev" id="btnPrev"/> 
-              <input type="button" value="Next" id="btnNext"/>  
+              <div id="buttongroup">
+                <p><strong>From: </strong><span id="from"></span>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<strong>To: </strong><span id ="to"></span></p>
+                <input type="button" class="btn btn-info" value="<<Prev Week" id="btnPrev"/> &nbsp &nbsp &nbsp
+                <input type="button" class="btn btn-info" value="Next Week >>" id="btnNext"/>
+                </div>    
             </div>
           </div>
+
+          <div class="row">
+            <div class="col l12">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col l12">
+            </div>
+          </div>
+
           <div class="row">
             <div class="col l12">
               <div id="highchart2"></div>
             </div>
-          </div>
-                     
+          </div>                     
       </div>
     </div>
 

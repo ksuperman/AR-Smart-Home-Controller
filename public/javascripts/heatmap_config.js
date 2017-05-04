@@ -6,6 +6,7 @@ $(document).ready(function(){
     var fdate = new Date(from_date);
     var tdate = new Date(to_date);
 
+
     $("#from").text((fdate.getMonth() + 1) + '/' + fdate.getDate() + '/' +  fdate.getFullYear());
     $("#to").text((tdate.getMonth() + 1) + '/' + tdate.getDate() + '/' +  tdate.getFullYear());
 
