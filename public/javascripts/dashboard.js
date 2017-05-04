@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
 	var for_date = moment().format('YYYY-MM-DD');
 	
 	/**
@@ -25,7 +24,7 @@ $(document).ready(function(){
 		$("#devicesUsed" ).text(data.length);
 		
 	});
-	
+  
 	/**
 	 * Highchart for displaying devices used
 	 */
@@ -207,5 +206,4 @@ $(document).ready(function(){
 
 
 	});
-
 });

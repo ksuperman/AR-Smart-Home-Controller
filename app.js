@@ -5,6 +5,7 @@ var logger = require('morgan');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var client_session = require('client-sessions');
 
 /* i18n Configuration  */
 var i18n = require('i18n');
@@ -17,8 +18,10 @@ i18n.configure({
 
 /* Setup Routes for the Application*/
 var index = require('./routes/index');
+var heatmap = require('./routes/heatmap');
 var users = require('./routes/users');
 var api = require('./api/deviceapi');
+var energyApi = require('./api/energyconsumption');
 var arcontroller = require('./routes/ar_controller');
 
 /* Application init */
@@ -32,8 +35,9 @@ mongoose.connect(mongourl, function(err) {
     console.log("Successfully Connected to cloud mongodb");
 });
 
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join( __dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -48,6 +52,13 @@ app.use(session({
     saveUninitialized: true,
     cookie: { maxAge: 60000 }
 }));
+
+app.use(client_session({   
+    
+  cookieName: 'ClientSession',    
+  secret: 'Smart_Home',    
+  duration: 30 * 60 * 1000,    
+  activeDuration: 5 * 60 * 1000,  }));
 
 /* i18n Init */
 app.use(i18n.init);
@@ -64,6 +75,7 @@ app.use(require('node-sass-middleware')({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components' ,express.static(path.join(__dirname, 'bower_components')));
 
+
 /* Middleware Request Interceptor */
 app.use(function(req, res, next) {
     var current_locale = i18n.getLocale();
@@ -76,16 +88,10 @@ app.use('/', index);
 app.use('/datatable', index);
 app.use('/users', users);
 app.use('/api/device', api);
+app.use('/api/energy', energyApi);
 app.use('/arcontroller', arcontroller);
 
 /* Error Interceptor */
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-/* Error Handlers */
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
