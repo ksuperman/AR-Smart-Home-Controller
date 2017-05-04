@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Energy Consumption</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel='stylesheet' href='/bower_components/materialize/dist/css/materialize.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/dashboard.css'/>
+    <link rel="stylesheet" type="text/css" href="/bower_components/datatables.net-dt/css/jquery.dataTables.min.css">
+
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/materialize/dist/js/materialize.js"></script>
+    <script src="/bower_components/highcharts/highstock.js"></script>
+    <script src="/bower_components/highcharts/modules/exporting.js"></script>
+    <script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script>
+    	var device = "<%- __('Device')%>";
+    	var startTime = "<%- __('Start Time')%>";
+    	var endTime = "<%- __('End Time')%>";
+    	var energyConsumption = "<%- __('Energy Consumed')%>";
+    </script>
+</head>
+<body>
+<% include header %>
+<% include sidenav %>
+<div class="main">
+    <div class="container">
+    	<div class="headingSection"><h4><%- __('Device Energy Consumption')%></h4></div>
+        <table id="datatable" class="display"></table>
+    </div>
+</div>
+<% include footer %>
+<script src="/javascripts/initialize.js"></script>
+<script src="/javascripts/datatable.js"></script>
+</body>
+</html>
