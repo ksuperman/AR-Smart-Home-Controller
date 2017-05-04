@@ -67,6 +67,8 @@ router.post('/insertDummyEnergyData', function(req, res, next) {
 			var energyInstance = new energyModel({
 				device_id: document._id,
 				energy_date: temp,
+				device_util_startTime : temp,
+				device_util_endTime : temp + 2*60*60*1000,
 				my_number: Math.floor((Math.random()*11)+1),
 				energy_consumed: Math.ceil(Math.random()*1000)
 			});

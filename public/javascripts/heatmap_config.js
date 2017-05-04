@@ -94,7 +94,7 @@ $(document).ready(function(){
                     plotBorderWidth: 1
                 },
                 title: {
-                    text: 'Electricity Usage per weekday'
+                    text: chart1_name
                 },
                 tooltip: {
                    formatter: function () {
@@ -166,7 +166,7 @@ $(document).ready(function(){
                 data: seriesData
             }],
             title: {
-                text: 'Device Usage Heatmap'
+                text: chart2_name
             }
         });
 
