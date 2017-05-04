@@ -187,7 +187,7 @@ router.get('/insertDeviceHistory', function(req, res, next) {
 
 router.get('/getAllDeviceHistory', function(req, res, next) {
     console.log("/getAllDeviceHistory");
-    devHistory.find({}, function (err, document){
+    devHistory.find().sort({'energy_date': 1}).find(function (err, document){
         if(err){
             console.log(err);
             throw err;
