@@ -3,7 +3,10 @@ var router = express.Router();
 var device = require('../schema/deviceModel');
 var energyConsumed = require('../schema/energyModel');
 var utilityConsumed = require('../schema/utilityModel');
+var energyModel = require('../schema/consumptionModel');
 var moment = require('moment');
+const util = require('util');
+
 
 /**
  * API SERVICE TO INSERT DEVICE
@@ -43,7 +46,20 @@ router.post('/insertDevice', function(req, res, next) {
  */
 router.get('/getAllDevices', function(req, res, next) {
 	console.log("/getAllDevices");	
-	device.find({}, function (err, document) {
+	console.log("req.query.for_date:: "+req.query.for_date);
+
+	energyModel.find({
+		"energy_date": req.query.for_date
+	})
+	.populate('device_id')
+	.exec(function(err, document){
+		if (err) {
+			console.log(err);
+			throw err;    		 
+		}
+		if (document.length > 0) {
+			console.log("Got Data from db for date " + req.query.for_date);
+		}
 		res.send(document);
 	});
 });
@@ -51,9 +67,13 @@ router.get('/getAllDevices', function(req, res, next) {
 /**
  * API SERVICE TO GET ONE DEVICE
  */
-router.get('/getDevice', function(req, res, next) {
-	console.log("/getDevice");	
-	device.findOne({ device_name: "Fan4"}, function (err, document){
+router.get('/getDevice/:device_name', function(req, res, next) {
+
+	console.log("/getDevice");
+	var deviceName = req.params.device_name;
+	console.log("deviceName:: "+deviceName);
+
+	device.findOne({ device_name: deviceName}, function (err, document){
 		if(err){
 			console.log(err);
 			throw err;
@@ -96,14 +116,86 @@ router.get('/insertDevicesEnergy', function(req, res, next) {
  */
 router.get('/getAllDevicesEnergy', function(req, res, next) {
 	console.log("/getAllDevicesEnergy");	
-	energyConsumed.find({}, function (err, document){
-		if(err){
+
+	energyModel.aggregate([{
+		$group: {
+			_id: '$energy_date', // grouping key - group by field district
+			energy_consumed: { $sum: '$energy_consumed' }
+		}
+	},
+	{   
+		$sort: 
+		{ 
+			"_id": 1 
+		} 
+	}    
+	]) 
+	.exec(function(err, document){
+		if (err) {
 			console.log(err);
-			throw err;
+			throw err;    		 
 		}
 		res.send(document);
 	});
+
 });
+
+
+
+
+/**
+ * API TO GET PANEL DETAILS PER DAY
+ */
+router.get('/getAllPanelDetails', function(req, res, next) {
+
+	console.log("/getAllPanelDetails");	
+	console.log("req.query.for_date:: "+req.query.for_date);
+
+	var rules = [{energy_date : req.query.for_date}]; 
+	
+	energyModel.aggregate([
+	                       	{
+	                       		$match : {
+	                       			energy_date : new Date(req.query.for_date)
+	                       		}
+	                       	},{
+	                       		$group: {
+	                    			_id: '$device_id', // grouping key - group by field district
+	                    			energy_consumed : { 
+	                    				$sum: '$energy_consumed' 
+	                    			},
+	                    			my_number : {
+	                    				$sum: '$my_number'
+	                    			}
+	                    		}
+	                       	}
+	                       	/*,{
+	                       		$project: {
+	                       			device_id : 1,
+	                       			energy_consumed : 1,
+	                       			my_number : 1
+	                       		}
+	                       	}*/
+	                       ]) 
+	                       .exec(function(err, document){
+	                    	   if (err) {
+	                    		   console.log("ERROR::: "+err);
+	                    		   throw err;    		 
+	                    	   }
+	                    	   for(var i = 0; i < document.length; i++){
+	                    		   console.log("DOCUMENT ON PANEL::  "+util.inspect(document[i], false, null))
+	                    	   }
+	                    	   res.send(document);
+	                       });
+
+});
+
+
+
+
+
+
+
 
 /**
  * API TO INSERT UTILITY CONSUMPTION PER MONTH
