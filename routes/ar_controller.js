@@ -6,7 +6,8 @@ var i18n = require('express');
 router.get('/', function(req, res, next) {
 
 	if(req.ClientSession.emailId){
-		res.render('ar_controller', { title: 'AR Smart Home Controller', i18n: res });
+		res.render('ar_controller', { fName: req.ClientSession.fName, lName: req.ClientSession.lName, title: 'AR Smart Home Controller', i18n: res  });
+		
 	} else{
 		res.redirect("/homepage");
 	}

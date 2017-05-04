@@ -6,7 +6,7 @@ var user = require('../schema/userModel');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	if(req.ClientSession.emailId){
-		res.render('index', { title: 'Express' });
+		res.render('index', { fName: req.ClientSession.fName, lName: req.ClientSession.lName });
 	} else{
 		res.redirect("/homepage");
 	}
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 router.get('/datatable', function(req, res, next) {
 
 	if(req.ClientSession.emailId){
-		res.render('datatable');
+		res.render('datatable', { fName: req.ClientSession.fName, lName: req.ClientSession.lName });
 	} else{
 		res.redirect("/homepage");
 	}
@@ -27,7 +27,7 @@ router.get('/datatable', function(req, res, next) {
 router.get('/heatmap', function(req, res, next) {
 
 	if(req.ClientSession.emailId){
-		res.render('heatmap');
+		res.render('heatmap', { fName: req.ClientSession.fName, lName: req.ClientSession.lName });
 	} else{
 		res.redirect("/heatmap");
 	}
@@ -97,8 +97,8 @@ router.post('/signUp', function(req, res, next) {
 			res.send("error");
 		} else {
 			req.ClientSession.emailId = signUpInfo.email;
-			req.ClientSession.fName = document.first_name;
-        	req.ClientSession.lName = document.last_name;
+			req.ClientSession.fName = signUpInfo.fName;
+        	req.ClientSession.lName = signUpInfo.lName;
 			console.log("Successful Sign UP");
 			res.redirect("/");
 		}
@@ -109,7 +109,7 @@ router.post('/signUp', function(req, res, next) {
 router.get('/devicemanagement',function(req, res, next) {
 
 	if(req.ClientSession.emailId){
-		res.render('devicemanagement');
+		res.render('devicemanagement', { fName: req.ClientSession.fName, lName: req.ClientSession.lName });
 	} else{
 		res.redirect("/homepage");
 	}
@@ -119,7 +119,7 @@ router.get('/devicemanagement',function(req, res, next) {
 router.get('/devdash',function(req, res, next) {
 
 	if(req.ClientSession.emailId){
-		res.render('devicedashboard',{id:req.query.id});
+		res.render('devicedashboard', { id:req.query.id, fName: req.ClientSession.fName, lName: req.ClientSession.lName });
 	} else{
 		res.redirect("/homepage");
 	}

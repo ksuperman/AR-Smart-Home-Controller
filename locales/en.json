@@ -53,7 +53,7 @@
 	"Member4": "Jagruti Patil",
 	"Member5": "Prajwal Kondawar",
 	"Login": "Login",
-	"SignUp": "Sign Up",
+	"SignUp": "SignUp",
 	"App_Header": "How does our app help you control your home!!!",
 	"Content1": "We are using Augmented Reality to make your experience very easy.",
 	"Content2": "You just need to point your phone to the device/equipment you want to control.",
@@ -62,5 +62,6 @@
 	"email_enter": "Email",
 	"password_enter": "Password",
 	"fname_enter": "First Name",
-	"lname_enter": "Last Name" 
+	"lname_enter": "Last Name",
+	"Logout": "Logout" 
 }
