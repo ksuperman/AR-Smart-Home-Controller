@@ -139,8 +139,6 @@ $(document).ready(function(){
 
 
     function loadHighChart2() {
-        var map = new Map();
-        console.log("Loading highcharts again for date " + fdate + "  ---- " + tdate);
         $.ajax({
             type: 'POST',
             url: '/api/energy/getAggregatedConsumption',
@@ -167,7 +165,7 @@ $(document).ready(function(){
                 data: seriesData
             }],
             title: {
-                text: 'Highcharts Treemap'
+                text: 'Device Usage Heatmap'
             }
         });
 
