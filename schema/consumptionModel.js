@@ -9,6 +9,8 @@ var energyModel = new mongoose.Schema({
 	device_id: {type: mongoose.Schema.Types.ObjectId, ref: 'device'},
 	energy_date: {type: Date, default: Date.now,},
 	my_number : {type: Number},
+	device_util_startTime: {type: Date, default: Date.now,},
+	device_util_endTime: {type: Date, default: +new Date() + 2*60*60*1000},
 	energy_consumed: {type: Number}
 });
 
