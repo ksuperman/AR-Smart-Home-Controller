@@ -1,0 +1,17 @@
+#highchart1 {
+	height: 400px;
+	min-width: 310px; 
+	max-width: 800px; 
+	margin: 0 auto;	
+}
+
+#highchart2 {
+	height: 400px;
+	min-width: 310px; 
+	max-width: 800px; 
+	margin: 0 auto;	
+}
+
+#buttongroup {
+	text-align: center;
+}
