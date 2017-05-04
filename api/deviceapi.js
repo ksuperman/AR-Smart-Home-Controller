@@ -190,7 +190,7 @@ router.get('/getUniqueDevices', function(req, res, next) {
 });
 
 router.post('/getAggregatedConsumption', function(req, res, next) {
-     devHistory.aggregate([{
+     energyModel.aggregate([{
             $group: {
                 _id: '$device_id', // grouping key - group by field district
                 energy_consumed: { $sum: '$energy_consumed' }
@@ -240,7 +240,7 @@ router.get('/insertDeviceHistory', function(req, res, next) {
         histdata.push({"energy_date" : date,"energy_consumed" :energy_used,"device_id" : device_id});
     }
 
-    devHistory.insertMany(histdata, function(err, docs){
+    energyModel.insertMany(histdata, function(err, docs){
         if (err) {
             console.log(err);
             res.send("error");
@@ -252,7 +252,7 @@ router.get('/insertDeviceHistory', function(req, res, next) {
 
 router.get('/getAllDeviceHistory', function(req, res, next) {
     console.log("/getAllDeviceHistory");
-    devHistory.find().sort({'energy_date': 1}).find(function (err, document){
+    energyModel.find().sort({'energy_date': 1}).find(function (err, document){
         if(err){
             console.log(err);
             throw err;
