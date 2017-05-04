@@ -1,20 +1,46 @@
 $(document).ready(function(){
+	var for_date = moment().format('YYYY-MM-DD');
+	
+	/**
+	 * Highchart for displaying Panel details for current date
+	 */
+	$.getJSON('/api/device/getAllPanelDetails',{
+		"for_date" : for_date
+	}, function (data) {
+		
+		var energy_consumed = 0;
+		var time_usage = 0;
+		
+		for (var i=0 ; i< data.length; i++) {
+			console.log("data[i].energy_consumed:::::::::::::::::"+data[i].energy_consumed);
+			console.log("data[i].my_number:::::::::::::::::"+data[i].my_number);
+			energy_consumed += parseInt(data[i].energy_consumed);
+			time_usage += parseInt(data[i].my_number);
+		}
+		
+		$("#currentDate" ).text(moment().format('L'));
+		$("#energyConsumed" ).text(energy_consumed);
+		$("#timeUsed" ).text(time_usage);
+		$("#devicesUsed" ).text(data.length);
+		
+	});
+  
 	/**
 	 * Highchart for displaying devices used
 	 */
-
-	$.getJSON('/api/device/getAllDevices', function (data) {
-
+	
+	$.getJSON('/api/device/getAllDevices',{
+		"for_date" : for_date
+	},function (data) {
+		
 		var series = [];
-
+		
 		for (var i=0 ; i< data.length; i++) {
-			var x =new Date(data[i].device_util_startTime);
-			var y =new Date(data[i].device_util_endTime);
 			if(i==0){
-				series.push({"name" : data[i].device_name, "y" : data[i].device_energy_consumption,
+				series.push({"name" : data[i].device_id.device_name, "y" : data[i].energy_consumed,
 					sliced: true, selected: true});
 			}else{
-				series.push({"name" : data[i].device_name, "y" : data[i].device_energy_consumption});
+				series.push({"name" : data[i].device_id.device_name, "y" : data[i].energy_consumed});
 			}
 		}
 
@@ -66,7 +92,6 @@ $(document).ready(function(){
 			var gasUsg = data[i].gas_usage;
 			var electrictyUsg = data[i].electricity_usage;
 			var avg = (waterUsg+gasUsg+electrictyUsg)/3;
-			console.log(data[i].utility_month);
 			months.push(data[i].utility_month);
 			waterUsage.push(waterUsg);
 			gasUsage.push(gasUsg);
@@ -129,15 +154,8 @@ $(document).ready(function(){
 
 		var series = [];
 
-		$("#currentDate" ).text(moment().format('L'));
-		$("#energyConsumed" ).text(data[data.length-
-
-		                                1].energy_consumed);
-		$("#timeUsed" ).text(data[data.length-1].time_usage);
-		$("#devicesUsed" ).text(data[data.length-1].devices_used);
-
 		for (var i=0 ; i< data.length; i++) {
-			var startDateTime = new Date(data[i].energy_date);
+			var startDateTime = new Date(data[i]._id);
 			var date = moment(startDateTime, "MM/DD/YYYY HH:mm").unix()*1000;
 			series.push([date,data[i].energy_consumed]);
 		}
