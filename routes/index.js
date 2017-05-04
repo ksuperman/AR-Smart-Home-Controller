@@ -1,14 +1,26 @@
 var express = require('express');
 var router = express.Router();
 var queryExec = require("./Query_Executor");
+var user = require('../schema/userModel');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('index', { title: 'Express' });
+	if(req.ClientSession.emailId){
+		res.render('index', { title: 'Express' });
+	} else{
+		res.redirect("/homepage");
+	}
 });
 
 router.get('/datatable', function(req, res, next) {
-	res.render('datatable');
+
+	if(req.ClientSession.emailId){
+		res.render('datatable');
+	} else{
+		res.redirect("/homepage");
+	}
+
+	
 });
 
 router.get('/homepage', function(req, res, next) {
@@ -23,6 +35,12 @@ router.get('/signup', function(req, res, next) {
 	res.render('signup', { title: 'Sign Up' });
 });
 
+router.get('/logout', function(req, res, next) {
+	console.log("logout");
+	req.ClientSession.destroy();
+	res.redirect("/");
+});
+
 router.post('/login', function(req, res, next) {
 	
 	var loginInfo, queryString;
@@ -31,31 +49,19 @@ router.post('/login', function(req, res, next) {
 	
 	loginInfo = req.body;
 	
-	//Check if the Email ID and Password exists in the system.
-	
-	queryString = "SELECT email_id FROM users WHERE email_id = '" + loginInfo.loginEmail + "' AND password = '" + loginInfo.loginPass + "'";  
-	console.log("Login Query is: "+ queryString);
-	
-	
-	queryExec.fetchData(function(err,results){
-		if(err){
-			throw err;
-		}
-		else 
-		{
-				
-				if(results.length > 0){
-					req.session.emailId = loginInfo.loginEmail;
-					console.log("Allow Login");
-					res.end("Logged in successfully.");
-				}
-				
-				else{
-					console.log("Invalid Login...");
-				}
-			
-			}	
-		},queryString);
+	user.findOne({ email_id: loginInfo.email}, function (err, document){
+        if(err){
+            console.log(err);
+            throw err;
+        } else{
+        	req.ClientSession.emailId = loginInfo.email;
+        	req.ClientSession.fName = document.first_name;
+        	req.ClientSession.lName = document.last_name;
+			console.log("Allow Login");
+			res.redirect("/");
+        }
+        
+    });
 
 });
 
@@ -67,55 +73,44 @@ router.post('/signUp', function(req, res, next) {
 	
 	signUpInfo = req.body;
 	
-	//Check if the Email ID user is giving while creating an account already exists. If yes then, don't allow to create an account.
-	
-	queryString = "SELECT email_id FROM users WHERE email_id = '" + signUpInfo.emailId + "'";  
-	console.log("Account already exists Query is: "+ queryString);
-	
-	
-	queryExec.fetchData(function(err,results){
-		if(err){
-			throw err;
-		}
-		else 
-		{
-				
-				if(results.length > 0){
-					console.log("Email ID already exists");
-					res.end("This Email ID already exists. Please choose unique email ID.");
-				}
-				
-				else{
-					console.log("Creating account...");
-					
-					queryString = "INSERT INTO users (`email_id`, `fname`, `lname`, `password`) VALUES ('" + signUpInfo.emailId + "', '" + signUpInfo.fName + "', '" + signUpInfo.lName + "', '" + signUpInfo.password + "')";  
-					console.log("Sign Up Query is: "+ queryString);
-					
-					queryExec.fetchData(function(err,results){
-						if(err){
-							throw err;
-						}
-						else 
-						{
-								req.session.emailId = signUpInfo.emailId;
-								console.log("Successful Sign UP");
-								res.end("Congratulations!!! Your account has been created successfully.");
-								
-						}	
-					},queryString);
+	var userInstance = new user({
+		first_name: signUpInfo.fName,
+		last_name: signUpInfo.lName,
+		email_id: signUpInfo.email,
+		password: signUpInfo.password
+	});
 
-				}
-			
-			}	
-		},queryString);
+	userInstance.save(function (err) {
+		if (err) {
+			res.send("error");
+		} else {
+			req.ClientSession.emailId = signUpInfo.email;
+			req.ClientSession.fName = document.first_name;
+        	req.ClientSession.lName = document.last_name;
+			console.log("Successful Sign UP");
+			res.redirect("/");
+		}
+	});
+
 });
 
 router.get('/devicemanagement',function(req, res, next) {
-    res.render('devicemanagement');
+
+	if(req.ClientSession.emailId){
+		res.render('devicemanagement');
+	} else{
+		res.redirect("/homepage");
+	}
+    
 });
 
 router.get('/devdash',function(req, res, next) {
-    res.render('devicedashboard',{id:req.query.id});
+
+	if(req.ClientSession.emailId){
+		res.render('devicedashboard',{id:req.query.id});
+	} else{
+		res.redirect("/homepage");
+	}
 
 });
 

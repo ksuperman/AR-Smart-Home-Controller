@@ -4,7 +4,13 @@ var i18n = require('express');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('ar_controller', { title: 'AR Smart Home Controller', i18n: res });
+
+	if(req.ClientSession.emailId){
+		res.render('ar_controller', { title: 'AR Smart Home Controller', i18n: res });
+	} else{
+		res.redirect("/homepage");
+	}
+
 });
 
 module.exports = router;

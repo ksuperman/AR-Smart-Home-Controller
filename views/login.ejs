@@ -51,7 +51,7 @@
   </style>
 </head>
 
-<body ng-app="loginApp">
+<body>
 
   <video poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg" id="bgvid" playsinline autoplay loop>
   <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
@@ -60,7 +60,7 @@
   </video>
 
   <div class="section"></div>
-  <main ng-controller="loginController" align="right">
+  <form action="/login" method="post" align="right">
     <!--<center>-->
       <!--<img class="responsive-img" style="width: 250px;" src="http://i.imgur.com/ax0NCsK.gif" />-->
       <div class="section"></div>
@@ -79,14 +79,14 @@
 
             <div class='row'>
               <div class='input-field col s12'>
-                <input class='validate' type='email' name='email' id='email' ng-model="loginEmail"/>
+                <input class='validate' type='email' name='email' id='email'/>
                 <label for='email'><%= __('email_enter')%></label>
               </div>
             </div>
 
             <div class='row'>
               <div class='input-field col s12'>
-                <input class='validate' type='password' name='password' id='password' ng-model="loginPass"/>
+                <input class='validate' type='password' name='password' id='password'/>
                 <label for='password'><%= __('password_enter')%></label>
               </div>
             </div>
@@ -94,7 +94,7 @@
             <br />
             <!--<center>-->
               <div class='row'>
-                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo' ng-click="login()"><%= __('Login')%></button>
+                <input type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo' value=<%= __('Login')%>>
               </div>
 
               <div class='row'>
@@ -109,36 +109,10 @@
 
     <div class="section"></div>
     <div class="section"></div>
-  </main>
+  </form>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-  <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
-
-
-  <script>
-    
-    var login = angular.module('loginApp', []);
-    login.controller('loginController', loginOperations); 
-      
-    function loginOperations($scope, $http) {
-      
-      $scope.login = function(){
-      
-        console.log("login controller working");
-        var loginInfo = {loginEmail:$scope.loginEmail, loginPass:$scope.loginPass};
-        
-        $http.post("/login", loginInfo)
-        .success(function(data) {
-          console.log("Success returned from Login query");
-          //window.location.assign("");
-            })
-        
-      }
-        
-    }
-      
-  </script>
 
 
 </body>

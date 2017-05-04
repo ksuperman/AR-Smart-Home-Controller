@@ -43,6 +43,7 @@ router.post('/insertDevice', function(req, res, next) {
  */
 router.get('/getAllDevices', function(req, res, next) {
     console.log("/getAllDevices");
+    console.log(req.ClientSession.emailId);
     device.find({}, function (err, document) {
         res.send(document);
     });

@@ -53,8 +53,8 @@
 	"Content2": "Il suffit de pointer votre téléphone sur le périphérique / équipement que vous souhaitez contrôler.",
 	"Content3": "Sur la base de l'équipement, nous vous indiquons le menu correspondant pour contrôler l'équipement.",
 	"Content4": "Nous maintenons également votre historique d'utilisation et le montre dans des tableaux de bord intuitifs.",
-	"email_enter": "Entrer votre Email",
-	"password_enter": "Tapez votre mot de passe",
-	"fname_enter": "Entrez votre prénom",
-	"lname_enter": "Entrez votre nom de famille"
+	"email_enter": "Email",
+	"password_enter": "Mot de passe",
+	"fname_enter": "Prénom",
+	"lname_enter": "Nom de famille"
 }
