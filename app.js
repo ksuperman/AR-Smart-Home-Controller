@@ -18,8 +18,10 @@ i18n.configure({
 
 /* Setup Routes for the Application*/
 var index = require('./routes/index');
+var heatmap = require('./routes/heatmap');
 var users = require('./routes/users');
 var api = require('./api/deviceapi');
+var energyApi = require('./api/energyconsumption');
 var arcontroller = require('./routes/ar_controller');
 
 /* Application init */
@@ -32,6 +34,7 @@ mongoose.connect(mongourl, function(err) {
     if (err) throw err;
     console.log("Successfully Connected to cloud mongodb");
 });
+
 
 // view engine setup
 app.set('views', path.join( __dirname, 'views'));
@@ -72,6 +75,7 @@ app.use(require('node-sass-middleware')({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components' ,express.static(path.join(__dirname, 'bower_components')));
 
+
 /* Middleware Request Interceptor */
 app.use(function(req, res, next) {
     var current_locale = i18n.getLocale();
@@ -84,16 +88,10 @@ app.use('/', index);
 app.use('/datatable', index);
 app.use('/users', users);
 app.use('/api/device', api);
+app.use('/api/energy', energyApi);
 app.use('/arcontroller', arcontroller);
 
 /* Error Interceptor */
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-/* Error Handlers */
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

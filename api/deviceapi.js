@@ -3,23 +3,23 @@ var router = express.Router();
 var device = require('../schema/deviceModel');
 var energyConsumed = require('../schema/energyModel');
 var utilityConsumed = require('../schema/utilityModel');
-var devHistory= require('../schema/devHistoryModel');
+var devHistory= require('../schema/consumptionModel');
 var moment = require('moment');
+
 
 /**
  * API SERVICE TO INSERT DEVICE
  */
 router.post('/insertDevice', function(req, res, next) {
 	console.log("/insertDevice");
-
+	
 	var name = "Washing Machine";
 	var energy = Math.ceil(Math.random()*1000);
-
+	
 	var deviceInstance = new device({
 		device_name: name,
 		device_energy_consumption: energy
 	});
-
 	deviceInstance.save(function (err) {
 		if (err) {
 			res.send("error");
@@ -42,19 +42,19 @@ router.post('/insertDevice', function(req, res, next) {
  * API SERVICE TO GET ALL DEVICE
  */
 router.get('/getAllDevices', function(req, res, next) {
-    console.log("/getAllDevices");
-    console.log(req.ClientSession.emailId);
-    device.find({}, function (err, document) {
-        res.send(document);
-    });
+
+	console.log("/getAllDevices");	
+	device.find({}, function (err, document) {
+		res.send(document);
+	});
 });
 
 /**
  * API SERVICE TO GET ONE DEVICE
  */
 router.get('/getDevice', function(req, res, next) {
-    console.log("/getDevice");
-    device.findOne({ device_name: "Fan4"}, function (err, document){
+	console.log("/getDevice");	
+	device.findOne({ device_name: "Fan4"}, function (err, document){
         if(err){
             console.log(err);
             throw err;
@@ -160,6 +160,41 @@ router.get('/getUniqueDevices', function(req, res, next) {
     });
 });
 
+router.post('/getAggregatedConsumption', function(req, res, next) {
+     devHistory.aggregate([{
+            $group: {
+                _id: '$device_id', // grouping key - group by field district
+                energy_consumed: { $sum: '$energy_consumed' }
+            }
+     },
+     {
+        $lookup:
+            {
+                from: "devices",
+                localField: "_id",
+                foreignField: "_id",
+                as: "device_data"
+            }
+    },
+    {   $sort: 
+            { 
+                "energy_consumed": 1 
+            } 
+    }    
+    ]) 
+     .exec(function(err, document){
+           if (err) {
+              console.log(err);
+              throw err;             
+           }
+          console.log(document);
+          res.send(document);
+     })
+});
+
+
+
+
 /**
  * API TO INSERT DEVICE HISTORY PER DAY
  */
@@ -237,5 +272,6 @@ router.get('/getAllUtilityConsumption', function(req, res, next) {
 		res.send(document);
 	});
 });
+
 
 module.exports = router;
