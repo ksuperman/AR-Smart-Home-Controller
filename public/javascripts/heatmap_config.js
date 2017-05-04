@@ -158,7 +158,7 @@ $(document).ready(function(){
         Highcharts.chart('highchart2', {
             colorAxis: {
                 minColor: '#FFFFFF',
-                maxColor: Highcharts.getOptions().colors[0]
+                maxColor: Highcharts.getOptions().colors[2]
             },
             series: [{
                 type: 'treemap',
