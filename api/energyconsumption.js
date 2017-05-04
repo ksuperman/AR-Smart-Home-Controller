@@ -63,12 +63,14 @@ router.post('/insertDummyEnergyData', function(req, res, next) {
 		for (var energy_date_temp = new Date(from_date); energy_date_temp <= to_date; energy_date_temp.setDate(energy_date_temp.getDate() + 1)) {
 			console.log("Date: " + energy_date_temp);
 			var temp = energy_date_temp + "";
-			
+			var starttime = energy_date_temp;
+			var endtime = energy_date_temp + 2*60*1000;
+
 			var energyInstance = new energyModel({
 				device_id: document._id,
 				energy_date: temp,
 				device_util_startTime : temp,
-				device_util_endTime : temp + 2*60*60*1000,
+				device_util_endTime : endtime,
 				my_number: Math.floor((Math.random()*11)+1),
 				energy_consumed: Math.ceil(Math.random()*1000)
 			});
