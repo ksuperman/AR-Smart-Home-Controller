@@ -7,12 +7,12 @@ mongoose.Promise = global.Promise;
 var connection = mongoose.createConnection(mongourl);
 
 var devHistoryModel = new mongoose.Schema({
-    device_id:{type: Number},
-    my_number: {type: Number},
-    energy_date: {type: Date},
+    device_id: {type: mongoose.Schema.Types.ObjectId, ref: 'device'},
+    energy_date: {type: Date, default: Date.now,},
+    my_number : {type: Number},
     energy_consumed: {type: Number}
 });
 
-var devUsage = mongoose.model('devUsage', devHistoryModel);
+var devUsage = mongoose.model('devusages', devHistoryModel);
 
 module.exports = devUsage;
