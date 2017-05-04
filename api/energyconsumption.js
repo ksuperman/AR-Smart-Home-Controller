@@ -112,13 +112,18 @@ router.post('/getAggregatedConsumption', function(req, res, next) {
      {
       	$lookup:
         	{
-          		from: "device",
-          		localField: "device_id",
-          		foreignField: "device_id",
+          		from: "devices",
+          		localField: "_id",
+          		foreignField: "_id",
           		as: "device_data"
         	}
-   	 	}
-     ]) 
+   	},
+   	{   $sort: 
+   		    { 
+   		    	"energy_consumed": 1 
+   		    } 
+    }    
+    ]) 
      .exec(function(err, document){
     	   if (err) {
     	 	  console.log(err);

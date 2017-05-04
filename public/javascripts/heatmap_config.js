@@ -143,11 +143,18 @@ $(document).ready(function(){
         console.log("Loading highcharts again for date " + fdate + "  ---- " + tdate);
         $.ajax({
             type: 'POST',
-            url: '/api/energy/getAllDeviceConsumptionForWeek',
-            data: { "from_date": fdate,
-                    "to_date": tdate},
-            dataType: 'json',                              
+            url: '/api/energy/getAggregatedConsumption',
+            dataType: 'json'                              
         }).done(function(result) {
+
+        console.log(result);    
+        var seriesData = [];
+        for (var i = 0; i < result.length; i++) {
+                var energy_usage = result[i].energy_consumed;
+                var device_name = result[i].device_data[0].device_name;
+                var color = i+1;
+                seriesData.push({name : device_name, value : energy_usage, colorValue : color});
+            }
 
         Highcharts.chart('highchart2', {
             colorAxis: {
@@ -157,35 +164,7 @@ $(document).ready(function(){
             series: [{
                 type: 'treemap',
                 layoutAlgorithm: 'squarified',
-                data: [{
-                    name: 'A',
-                    value: 6,
-                    colorValue: 1
-                }, {
-                    name: 'B',
-                    value: 6,
-                    colorValue: 2
-                }, {
-                    name: 'C',
-                    value: 4,
-                    colorValue: 3
-                }, {
-                    name: 'D',
-                    value: 3,
-                    colorValue: 4
-                }, {
-                    name: 'E',
-                    value: 2,
-                    colorValue: 5
-                }, {
-                    name: 'F',
-                    value: 2,
-                    colorValue: 6
-                }, {
-                    name: 'G',
-                    value: 1,
-                    colorValue: 7
-                }]
+                data: seriesData
             }],
             title: {
                 text: 'Highcharts Treemap'
