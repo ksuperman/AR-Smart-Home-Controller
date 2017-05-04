@@ -21,6 +21,7 @@
     "morgan": "~1.7.0",
     "node-sass-middleware": "0.9.8",
     "serve-favicon": "~2.3.2",
-    "mysql": "2.13.0"
+    "mysql": "2.13.0",
+    "client-sessions": "0.8.0" 
   }
 }

@@ -5,6 +5,7 @@ var logger = require('morgan');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var client_session = require('client-sessions');
 
 /* i18n Configuration  */
 var i18n = require('i18n');
@@ -48,6 +49,13 @@ app.use(session({
     saveUninitialized: true,
     cookie: { maxAge: 60000 }
 }));
+
+app.use(client_session({   
+    
+  cookieName: 'ClientSession',    
+  secret: 'Smart_Home',    
+  duration: 30 * 60 * 1000,    
+  activeDuration: 5 * 60 * 1000,  }));
 
 /* i18n Init */
 app.use(i18n.init);
