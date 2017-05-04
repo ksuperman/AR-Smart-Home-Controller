@@ -56,5 +56,6 @@
 	"email_enter": "Email",
 	"password_enter": "Mot de passe",
 	"fname_enter": "Prénom",
-	"lname_enter": "Nom de famille"
+	"lname_enter": "Nom de famille",
+	"Logout": "Connectez - Out"
 }
