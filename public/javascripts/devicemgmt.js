@@ -1,12 +1,15 @@
 $(document).ready(function(){
+    var devmap = new Map();
 
 	$.ajax({
-		type: 'GET',
-		url: '/api/device/getUniqueDevices',
+		type: 'POST',
+		url: '/api/device/getAggregatedConsumption',
 		dataType: 'json',                              
 	})
 	.done(function(result) {
-		console.log("RESULT");
+        for (var i=0 ; i< result.length; i++) {
+        	devmap.set(result[i]._id,result[i].energy_consumed);
+		}
 	})
 	.fail(function(xhr, status, error) {
 		console.log(error);
@@ -19,10 +22,15 @@ $(document).ready(function(){
 	$.getJSON('/api/device/getUniqueDevices', function (data) {
 		console.log(data);
 		var series = [];
-		
+		var energy_data=0;
 		for (var i=0 ; i< data.length; i++) {
-		    series.push({"joined_id":data[i]._id,"dev_id" : data[i].device_id, "name" : data[i].device_name,"lastused":data[i].device_util_startTime,"total_cons":data[i].device_energy_consumption,"img_path":data[i].device_img_path});
-
+			if(devmap.has(data[i]._id)){
+				energy_data=devmap.get(data[i]._id);
+			}
+			else{
+				energy_data=0;
+			}
+		    series.push({"joined_id":data[i]._id,"dev_id" : data[i].device_id, "name" : data[i].device_name,"lastused":data[i].device_util_startTime,"total_cons":energy_data,"img_path":data[i].device_img_path});
 		}
         $.each(series, function (key, data) {
             //Loop to write all card element with json. (i is index for card in json.)
@@ -35,5 +43,4 @@ $(document).ready(function(){
 				lastused+': '+data.lastused+'</p><br><p>'+ totalcons+': '+data.total_cons+'</p></div></div></div>');
         });
 	});
-
 });
