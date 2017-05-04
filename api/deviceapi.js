@@ -30,15 +30,6 @@ router.post('/insertDevice', function(req, res, next) {
 		}
 	});
 
-	/*device.insertMany(arr, function(err, docs){
-		if (err) {
-			console.log(err);
-			res.send("error");
-		} else {
-			res.send("success");
-		}
-	});*/
-
 });
 
 /**
@@ -62,6 +53,7 @@ router.get('/getAllDevices', function(req, res, next) {
 		}
 		res.send(document);
 	});
+
 });
 
 /**
@@ -152,38 +144,28 @@ router.get('/getAllPanelDetails', function(req, res, next) {
 	console.log("req.query.for_date:: "+req.query.for_date);
 
 	var rules = [{energy_date : req.query.for_date}]; 
-	
+
 	energyModel.aggregate([
-	                       	{
-	                       		$match : {
-	                       			energy_date : new Date(req.query.for_date)
-	                       		}
-	                       	},{
-	                       		$group: {
-	                    			_id: '$device_id', // grouping key - group by field district
-	                    			energy_consumed : { 
-	                    				$sum: '$energy_consumed' 
-	                    			},
-	                    			my_number : {
-	                    				$sum: '$my_number'
-	                    			}
-	                    		}
-	                       	}
-	                       	/*,{
-	                       		$project: {
-	                       			device_id : 1,
-	                       			energy_consumed : 1,
-	                       			my_number : 1
-	                       		}
-	                       	}*/
+	                       {
+	                    	   $match : {
+	                    		   energy_date : new Date(req.query.for_date)
+	                    	   }
+	                       },{
+	                    	   $group: {
+	                    		   _id: '$device_id', // grouping key - group by field district
+	                    		   energy_consumed : { 
+	                    			   $sum: '$energy_consumed' 
+	                    		   },
+	                    		   my_number : {
+	                    			   $sum: '$my_number'
+	                    		   }
+	                    	   }
+	                       }
 	                       ]) 
 	                       .exec(function(err, document){
 	                    	   if (err) {
 	                    		   console.log("ERROR::: "+err);
 	                    		   throw err;    		 
-	                    	   }
-	                    	   for(var i = 0; i < document.length; i++){
-	                    		   console.log("DOCUMENT ON PANEL::  "+util.inspect(document[i], false, null))
 	                    	   }
 	                    	   res.send(document);
 	                       });
@@ -237,5 +219,48 @@ router.get('/getAllUtilityConsumption', function(req, res, next) {
 		res.send(document);
 	});
 });
+
+
+/**
+ * API SERVICE TO GET ALL UNIQUE DEVICE ENEGRY CONSUMPTION
+ */
+router.get('/getAllUniqueDevicesPerDay', function(req, res, next) {
+	console.log("/getAllUniqueDevicesPerDay");	
+	console.log("req.query.for_date:: "+req.query.for_date);
+
+	energyModel.aggregate([
+	                       {
+	                    	   $match : {
+	                    		   energy_date : new Date(req.query.for_date)
+	                    	   }
+	                       },{
+	                    	   $group: {
+	                    		   _id : {
+	                    			   dev_id : '$device_id',
+	                    			   name : '$device_name'
+	                    		   },
+	                    		   
+	                    		   /*_id: '$device_id',*/ 
+	                    		   energy_consumed : { 
+	                    			   $sum: '$energy_consumed' 
+	                    		   }
+	                    	   }
+	                       }
+	                       ]) 
+	                       .exec(function(err, document){
+	                    	   if (err) {
+	                    		   console.log("ERROR::: "+err);
+	                    		   throw err;    		 
+	                    	   }
+	                    	   
+	                    	   for(var i = 0; i < document.length; i++){
+		               				console.log("DOCUMENT HERE:: "+util.inspect(document[i], false, null));
+		               		   }
+	                    	   
+	                    	   res.send(document);
+	                       });
+
+});
+
 
 module.exports = router;

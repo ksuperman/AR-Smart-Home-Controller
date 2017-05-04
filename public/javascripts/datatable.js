@@ -1,14 +1,21 @@
 $(document).ready(function(){
 
-	$.getJSON('/api/device/getAllDevices',function(data){
+	var for_date = moment().format('YYYY-MM-DD');
+	
+	$.getJSON('/api/device/getAllDevices',{
+		"for_date" : for_date
+	},function(data){
 
+		console.log("DATATABLE:: "+data);
+		
 		var series = [];
 
 		for (var i=0 ; i< data.length; i++) {
 			var startDateTime = new Date(data[i].device_util_startTime);
 			var endDateTime = new Date(data[i].device_util_endTime);
-			var arr = [data[i].device_name,moment(startDateTime).format("MM/DD/YYYY HH:mm"),
-			           moment(endDateTime).format("MM/DD/YYYY HH:mm"),data[i].device_energy_consumption];
+			var arr = [data[i].device_id.device_name,moment(startDateTime).format("MM/DD/YYYY HH:mm"),
+			           moment(endDateTime).format("MM/DD/YYYY HH:mm"),data[i].energy_consumed];
+			
 			series.push(arr);
 		}
 

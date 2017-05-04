@@ -13,8 +13,6 @@ $(document).ready(function(){
 		var time_usage = 0;
 		
 		for (var i=0 ; i< data.length; i++) {
-			console.log("data[i].energy_consumed:::::::::::::::::"+data[i].energy_consumed);
-			console.log("data[i].my_number:::::::::::::::::"+data[i].my_number);
 			energy_consumed += parseInt(data[i].energy_consumed);
 			time_usage += parseInt(data[i].my_number);
 		}
@@ -35,6 +33,23 @@ $(document).ready(function(){
 	},function (data) {
 		
 		var series = [];
+		
+		console.log("getAllDevices:: "+data);
+		
+		var myMap = new Map();
+		
+		/*for (var i = 0; i< data.length; i++) {
+			var dev_energy = myMap.get(data[i].device_id.device_name);
+			
+			console.log("DEV_ENERGY:: "+dev_energy);
+			
+			if(dev_energy == null){
+				myMap.set(data[i].device_id.device_name,data[i].energy_consumed);
+			}else{
+				myMap.set(data[i].device_id.device_name,dev_energy+data[i].energy_consumed); 
+			}
+		}*/
+		
 		
 		for (var i=0 ; i< data.length; i++) {
 			if(i==0){
