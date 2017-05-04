@@ -87,7 +87,6 @@ app.use(function(req, res, next) {
 app.use('/', index);
 app.use('/datatable', index);
 app.use('/users', users);
-app.use('/energy', heatmap);
 app.use('/api/device', api);
 app.use('/api/energy', energyApi);
 app.use('/arcontroller', arcontroller);

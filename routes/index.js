@@ -23,6 +23,18 @@ router.get('/datatable', function(req, res, next) {
 	
 });
 
+
+router.get('/heatmap', function(req, res, next) {
+
+	if(req.ClientSession.emailId){
+		res.render('heatmap');
+	} else{
+		res.redirect("/heatmap");
+	}
+
+	
+});
+
 router.get('/homepage', function(req, res, next) {
 	res.render('homepage', { title: 'HomePage' });
 });

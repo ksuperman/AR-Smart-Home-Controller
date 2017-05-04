@@ -28,8 +28,7 @@
     <script src="/bower_components/highcharts/modules/exporting.js"></script>
   </head>
   <body>
-    <div id="header" class="header"></div>
-    <div id="sidenav" class="sidenav"></div>
+    <% include header %> <% include sidenav %>
     <div class="main">
       <div class="container">
           <div class="row">
@@ -61,7 +60,7 @@
       </div>
     </div>
 
-  <div id="footer" class="footer"></div>
+  <% include footer %>
 
   <!-- Initialize Scripts -->  
   <script src="/javascripts/heatmap_config.js"></script>
