@@ -53,8 +53,8 @@
 	"Content2": "You just need to point your phone to the device/equipment you want to control.",
 	"Content3": "Based on the equipment, we show you the relevant menu to control the equipment.",
 	"Content4": "We are also maintainig your usage history and showing it in intuitive dashboards.",
-	"email_enter": "Enter your email",
-	"password_enter": "Enter your password",
-	"fname_enter": "Enter your First Name",
-	"lname_enter": "Enter your Last Name" 
+	"email_enter": "Email",
+	"password_enter": "Password",
+	"fname_enter": "First Name",
+	"lname_enter": "Last Name" 
 }
