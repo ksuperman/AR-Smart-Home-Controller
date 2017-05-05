@@ -350,39 +350,21 @@ router.get('/getAllUtilityConsumption', function(req, res, next) {
  */
 router.get('/getAllUniqueDevicesPerDay', function(req, res, next) {
 	console.log("/getAllUniqueDevicesPerDay");	
-	console.log("req.query.for_date:: "+req.query.for_date);
-
-	energyModel.aggregate([
-	                       {
-	                    	   $match : {
-	                    		   energy_date : new Date(req.query.for_date)
-	                    	   }
-	                       },{
-	                    	   $group: {
-	                    		   _id : {
-	                    			   dev_id : '$device_id',
-	                    			   name : '$device_name'
-	                    		   },
-	                    		   
-	                    		   /*_id: '$device_id',*/ 
-	                    		   energy_consumed : { 
-	                    			   $sum: '$energy_consumed' 
-	                    		   }
-	                    	   }
-	                       }
-	                       ]) 
-	                       .exec(function(err, document){
-	                    	   if (err) {
-	                    		   console.log("ERROR::: "+err);
-	                    		   throw err;    		 
-	                    	   }
-	                    	   
-	                    	   for(var i = 0; i < document.length; i++){
-		               				console.log("DOCUMENT HERE:: "+util.inspect(document[i], false, null));
-		               		   }
-	                    	   
-	                    	   res.send(document);
-	                       });
+	
+	energyModel.find({})
+	.populate('device_id')
+	.exec(function(err, document){
+		if (err) {
+			console.log(err);
+			throw err;    		 
+		}
+		console.log("SIZE:::: "+document.length);
+		if (document.length > 0) {
+			console.log("TESTING FOR DATATABLE:::: " + req.query.for_date);
+		}
+		res.send(document);
+	});
+	
 
 });
 
