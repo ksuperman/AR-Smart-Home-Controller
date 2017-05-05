@@ -2,9 +2,7 @@ $(document).ready(function(){
 
 	var for_date = moment().format('YYYY-MM-DD');
 	
-	$.getJSON('/api/device/getAllDevices',{
-		"for_date" : for_date
-	},function(data){
+	$.getJSON('/api/device/getAllUniqueDevicesPerDay',function(data){
 
 		console.log("DATATABLE:: "+data);
 		
