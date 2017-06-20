@@ -5,11 +5,12 @@ var user = require('../schema/userModel');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	if(req.ClientSession.emailId){
+	res.render('index', { title: 'Express' });
+	/*if(req.ClientSession.emailId){
 		res.render('index', { title: 'Express' });
 	} else{
 		res.redirect("/homepage");
-	}
+	}*/
 });
 
 router.get('/datatable', function(req, res, next) {

@@ -1,6 +1,8 @@
 $(document).ready(function(){
 	var for_date = moment().format('YYYY-MM-DD');
 	
+	for_date = '2017-04-18';
+	
 	/**
 	 * Highchart for displaying Panel details for current date
 	 */
